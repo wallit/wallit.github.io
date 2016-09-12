@@ -87,3 +87,13 @@ we're confident you'll trust us to take care of your most prized possessions: yo
 your current subscription base into our system, we can handle all new subscriptions as well.  (Can you imagine? Less systems to maintain and 
 only one integration point? Wow! Kazaam!) This is done through our external subscriber management services.  Consider us your subscription butler.
 
+**External Subscriptions** If you have print subscriptions (or any other subscription or access system), you may want to 
+give some sort of preferential access to your online content.  This could take the form of free access to premium content
+or the option to purchase digital content at a discount.  The wallit software can provide options to make this integration
+as easy as possible.
+
+**External Fulfillment Subscriptions** If you're anything like us, you love going to three to five different interfaces
+to manage your access to a single publication. </sarcasm> But seriously, that would be super annoying.  That's why we
+developed a system to integrate with your external fulfillment services and manage your other subscriptions (like print).
+It may take a little integration - but we provide a number of callbacks and APIs that can integrate wallit with your
+other subscription service.  This means the customer only has one place to do their dirty work.
