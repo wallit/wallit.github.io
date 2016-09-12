@@ -38,6 +38,24 @@ wallit.documentation.tokenValidator = (function() {
         uri: '',
         params: ''
     };
+
+    /**
+     * The display for the token values before they're hashed
+     * @type {any}
+     */
+    var $tokenValueDisplay = $('#generated-values-combined');
+
+    /**
+     * Hashed token value
+     * @type {any}
+     */
+    var $hashedToken = $('#hashed-token');
+
+    /**
+     * The secret key
+     * @type {any}
+     */
+    var $secret = $('#secret');
     
     /**
      * This function sets the current time into the chooser
@@ -75,7 +93,7 @@ wallit.documentation.tokenValidator = (function() {
             
             $timeDisplay.html(dateString);
             tokenValue.time = dateString;
-        });
+        }).on('change', updateTokenValuesDisplayBox).on('change', updateHashedTokenDisplay);
     }
 
     /**
@@ -89,7 +107,7 @@ wallit.documentation.tokenValidator = (function() {
             
             $methodDisplay.html(methodString);
             tokenValue.method = methodString;
-        });
+        }).on('change', updateTokenValuesDisplayBox).on('change', updateHashedTokenDisplay);
     }
 
     /**
@@ -108,7 +126,57 @@ wallit.documentation.tokenValidator = (function() {
             
             $uriDisplay.html(uriDisplay);
             tokenValue.uri = uriString;
-        })
+        }).on('change', updateTokenValuesDisplayBox).on('change', updateHashedTokenDisplay);
+    }
+
+    /**
+     * If secret is changed, call the token updater
+     */
+    function addSecretHandler()
+    {
+        $secret.on('change', updateHashedTokenDisplay);
+    }
+
+    /**
+     * This is used to update the token display box
+     */
+    function updateTokenValuesDisplayBox()
+    {
+        $tokenValueDisplay.html(function() {
+            if (tokenValue.method && tokenValue.time && tokenValue.uri) {
+                var value = getTokenizableString();
+                if (!tokenValue.params) {
+                    value += "\n"; // this is necessary to make the display look right with whitespace: pre
+                }
+                return value;
+            }
+            else {
+                return 'N/A';
+            }
+        });
+    }
+
+    /**
+     * Display the hashed token value
+     */
+    function updateHashedTokenDisplay()
+    {
+        $hashedToken.html(function() {
+            if ($secret.val() && tokenValue.method && tokenValue.time && tokenValue.uri) {
+                return 'hashed token ' + Math.random();
+            }
+            else {
+                return 'N/A';
+            }
+        });
+    }
+
+    /**
+     * This gets the tokenizable values combined
+     */
+    function getTokenizableString()
+    {
+        return tokenValue.method + "\n" + tokenValue.time + "\n" + tokenValue.uri + "\n" + tokenValue.params;
     }
     
     return {
@@ -116,6 +184,7 @@ wallit.documentation.tokenValidator = (function() {
             addMethodHandler();
             addTimeHandlers();
             addURLHandler();
+            addSecretHandler();
             setCurrentTime();
         }
     }
