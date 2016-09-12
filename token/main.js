@@ -163,7 +163,10 @@ wallit.documentation.tokenValidator = (function() {
     {
         $hashedToken.html(function() {
             if ($secret.val() && tokenValue.method && tokenValue.time && tokenValue.uri) {
-                return 'hashed token ' + Math.random();
+                var shaObj = new jsSHA("SHA-256", "TEXT");
+                shaObj.setHMACKey($secret.val(), "TEXT");
+                shaObj.update(getTokenizableString());
+                return shaObj.getHMAC("B64");
             }
             else {
                 return 'N/A';
