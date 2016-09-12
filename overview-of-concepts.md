@@ -87,6 +87,3 @@ we're confident you'll trust us to take care of your most prized possessions: yo
 your current subscription base into our system, we can handle all new subscriptions as well.  (Can you imagine? Less systems to maintain and 
 only one integration point? Wow! Kazaam!) This is done through our external subscriber management services.  Consider us your subscription butler.
 
-
-
-
