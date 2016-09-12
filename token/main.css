@@ -1,0 +1,29 @@
+nav .brand-logo {
+    padding-left: 1rem;
+}
+h1 {
+    font-size: 3rem;
+}
+hr.spacer-only {
+    border-color: transparent;
+    margin-top: 2rem;
+}
+.input-field-group .col {
+    margin-top: 0;
+}
+.input-help {
+    font-size: 0.8rem;
+}
+
+#generated-values dt {
+    font-weight: bold;
+}
+#generated-values dd {
+    font-family: monospace;
+}
+
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 80%;
+    }
+}
