@@ -35,10 +35,6 @@
                             <select id="request-method">
                                 <option value="" disabled selected>Choose method</option>
                                 <option value="GET">GET</option>
-                                <option value="POST">POST</option>
-                                <option value="PUT">PUT</option>
-                                <option value="PATCH">PATCH</option>
-                                <option value="DELETE">DELETE</option>
                             </select>
                             <label for="request-method">API Call Request Method</label>
                         </div>
@@ -261,8 +257,8 @@
                             </div>
                         </div>
                         <div class="input-field">
-                            <input placeholder="https://..." id="url" type="url" class="validate">
-                            <label for="url">Full URL of Request</label>
+                            <input placeholder="https://..." id="request-url" type="url" class="validate" required>
+                            <label for="request-url">Full URL of Request</label>
                         </div>
                         <div class="input-field">
                             <input placeholder="shhh!" id="secret" type="text" class="validate" autocomplete="off">
@@ -293,6 +289,7 @@
                             <dt>Request URI</dt>
                             <dd id="generated-values-request-uri">N/A</dd>
                         </dl>
+                        <div class="token-container"></div>
                     </div>
                 </div>
             </div>

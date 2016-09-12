@@ -12,16 +12,31 @@ wallit.documentation = wallit.documentation || {};
 wallit.documentation.tokenValidator = (function() {
 
     /**
-     * Set up the request time selectors
-     * @type {{}}
+     * Objects for the token values
+     * @type {{$requestMethod: (any), requestTime: {$month: (any), $day: (any), $year: (any), $hour: (any), $min: (any), $sec: (any)}, $requestURL: (any)}}
      */
-    var requestTime = {
-        $month: $('#month'),
-        $day: $('#day'),
-        $year: $('#year'),
-        $hour: $('#hour'),
-        $min: $('#min'),
-        $sec: $('#sec')
+    var tokenBuilder = {
+        $requestMethod: $('#request-method'),
+        requestTime: {
+            $month: $('#month'),
+            $day: $('#day'),
+            $year: $('#year'),
+            $hour: $('#hour'),
+            $min: $('#min'),
+            $sec: $('#sec')
+        },
+        $requestURL: $('#request-url')
+    };
+
+    /**
+     * Token values
+     * @type {{method: string, time: string, uri: string, params: string}}
+     */
+    var tokenValue = {
+        method: '',
+        time: '',
+        uri: '',
+        params: ''
     };
     
     /**
@@ -32,14 +47,14 @@ wallit.documentation.tokenValidator = (function() {
     function setCurrentTime()
     {
         var date = new Date();
-        requestTime.$month.val(date.getMonth());
-        requestTime.$day.val(date.getDate());
-        requestTime.$year.val(date.getFullYear());
-        requestTime.$hour.val(date.getHours());
-        requestTime.$min.val(date.getMinutes());
-        requestTime.$sec.val(date.getSeconds());
-        
-        requestTime.$sec.trigger('change');
+        tokenBuilder.requestTime.$month.val(date.getMonth());
+        tokenBuilder.requestTime.$day.val(date.getDate());
+        tokenBuilder.requestTime.$year.val(date.getFullYear());
+        tokenBuilder.requestTime.$hour.val(date.getHours());
+        tokenBuilder.requestTime.$min.val(date.getMinutes());
+        tokenBuilder.requestTime.$sec.val(date.getSeconds());
+
+        tokenBuilder.requestTime.$sec.trigger('change');
     }
 
     /**
@@ -49,16 +64,17 @@ wallit.documentation.tokenValidator = (function() {
     {
         var $timeDisplay = $('#generated-values-request-time');
         $('#request-time-group select').on('change', function() {
-            $timeDisplay.html(function() {
-                return (newDate = new Date(
-                    requestTime.$year.val(),
-                    requestTime.$month.val(),
-                    requestTime.$day.val(),
-                    requestTime.$hour.val(),
-                    requestTime.$min.val(),
-                    requestTime.$sec.val()
-                )).toUTCString();
-            });
+            var dateString = (newDate = new Date(
+                tokenBuilder.requestTime.$year.val(),
+                tokenBuilder.requestTime.$month.val(),
+                tokenBuilder.requestTime.$day.val(),
+                tokenBuilder.requestTime.$hour.val(),
+                tokenBuilder.requestTime.$min.val(),
+                tokenBuilder.requestTime.$sec.val()
+            )).toUTCString();
+            
+            $timeDisplay.html(dateString);
+            tokenValue.time = dateString;
         });
     }
 
@@ -69,7 +85,10 @@ wallit.documentation.tokenValidator = (function() {
     {
         var $methodDisplay = $('#generated-values-request-method');
         $('#request-method').on('change', function() {
-            $methodDisplay.html($(this).val());
+            var methodString = $(this).val();
+            
+            $methodDisplay.html(methodString);
+            tokenValue.method = methodString;
         });
     }
 
@@ -79,18 +98,16 @@ wallit.documentation.tokenValidator = (function() {
     function addURLHandler()
     {
         var $uriDisplay = $('#generated-values-request-uri');
-        $('#url').on('change', function() {
-            var $url = $(this);
-            $uriDisplay.html(function() {
-                if ($url.get(0).validity.valid) {
-                    var a = document.createElement('a');
-                    a.href = $url.val();
-                    return a.pathname;
-                }
-                else {
-                    return 'N/A';
-                }                
-            });
+        $('#request-url').on('change', function() {
+            var uriString = '', uriDisplay = 'N/A';
+            if ($(this).get(0).validity.valid) {
+                var a = document.createElement('a');
+                a.href = this.value;
+                uriString = uriDisplay = a.pathname;
+            }
+            
+            $uriDisplay.html(uriDisplay);
+            tokenValue.uri = uriString;
         })
     }
     
