@@ -29,11 +29,33 @@ from the [accessui.wallit.io](https://accessui.wallit.io) domain.  There is no n
 always be used as part of a different, managed workflow involving the paywall.  There are two ways that a user might 
 interact with this interface.  
 
-The embedded paywall (and embedded account bar) is served from this user interface.  Since the embedded paywall is loaded through an iframe, though,
+The embedded paywall (and smart wallet) is served from this user interface.  Since the embedded paywall is loaded through an iframe, though,
 this URL will not be visible.
 
 The second way a user may interact with this interface is when a paywall is set to use redirection.  The user is sent to
 this interface to finish their authentication, authorization or purchase.  In this case, the user would see the URL.
 
 As a developer, you will most likely never interact directly with this interface either.
+
+## REST API
+
+For programmatic and back-end access, Wallit exposes two REST APIs.  Depending on your needs, you may use one or both of
+these APIs.
+
+**Access API** This API is used only for determining access to specific resources. It resides at [accessapi.wallit.io](https://accessapi.wallit.io) and 
+is optimized for speed.  This API is used behind the scenes with our javascript library (explained later) as well as for 
+server-side access control.  Basically, can the current visitor get at this resource; true or false?  That's what this API does.  
+It's black and white - kind of like what we assume one of our engineers sees daily - although he swears it's just a red/green "deficiency."
+
+**Manage API** The manage API contains a subset of the functionality found in the Manage UI.  This API interface will 
+allow you to automatically create resources, edit them, manage pricing and subscription groups, and more.  This API is
+most likely implemented in some sort of back-end system in your application.  For example, you might have users create
+content through a WYSIWYG type interface on your system, and when it's published, issue a request to this API to create 
+an associated resource with the proper access and pricing information.  This API is the real powerhouse of any automation.
+
+## Callbacks
+
+## Javascript Library
+
+## SDKs
 
