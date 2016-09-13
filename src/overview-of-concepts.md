@@ -25,6 +25,9 @@ web page that might contain a piece of content like an article or a collection o
 
 **Access API** This API is an speed-optimized API that is used only for determining if the current user has access to a resource.
 
+**Paywall** This is almost an generic word used to indicate our access control mechanism.  This might manifest itself transparently,
+through an embedded iframe, or with a redirect.
+
 ## Property Management
 
 There are two ways to view property settings and information.  You can access some of the property information through
