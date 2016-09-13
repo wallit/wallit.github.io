@@ -14,7 +14,7 @@ So, let's get started.
 ## Overview
 
 We're assuming you already know a little bit about how Wallit works or what it does.  If not, just take a quick scroll
-through the [Wallit.io](https://wallit.io) website - and then come back here. This documentation will describe a few 
+through the [wallit.io](https://wallit.io) website - and then come back here. This documentation will describe a few 
 things: how to use the API's to automate the integration, how to create a paywall or access control system on your 
 web platform, and how to integrate external subscription services.  
 

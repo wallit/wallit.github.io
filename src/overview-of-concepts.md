@@ -41,7 +41,7 @@ web application or CMS to create new resources whenever your authors or editors 
 **Management UI** You can create and edit resources through the management UI.
 
 **Dynamic Resource Creation** If this option is turned on for your property, the first time a resource is queried through
-the wallit software (via the javascript or the REST API), a resource will be created for you automatically.  @todo add a descriptor or link to more details about this
+Wallit (via the javascript or the REST API), a resource will be created for you automatically.  @todo add a descriptor or link to more details about this
 
 ## Resource Access Control
 
@@ -89,11 +89,18 @@ only one integration point? Wow! Kazaam!) This is done through our external subs
 
 **External Subscriptions** If you have print subscriptions (or any other subscription or access system), you may want to 
 give some sort of preferential access to your online content.  This could take the form of free access to premium content
-or the option to purchase digital content at a discount.  The wallit software can provide options to make this integration
+or the option to purchase digital content at a discount.  Wallit can provide options to make this integration
 as easy as possible.
 
 **External Fulfillment Subscriptions** If you're anything like us, you love going to three to five different interfaces
 to manage your access to a single publication. </sarcasm> But seriously, that would be super annoying.  That's why we
 developed a system to integrate with your external fulfillment services and manage your other subscriptions (like print).
-It may take a little integration - but we provide a number of callbacks and APIs that can integrate wallit with your
+It may take a little integration - but we provide a number of callbacks and APIs that can integrate Wallit with your
 other subscription service.  This means the customer only has one place to do their dirty work.
+
+## What's Next?
+
+Time to move on to the [overview of user interfaces](./overview-of-interfaces.md) which will give you a better idea of what
+user interfaces and programmer interfaces we have - and why you should care.
+
+[Go to Overview of User Interfaces](./overview-of-interfaces.md)
