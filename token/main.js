@@ -62,7 +62,14 @@ wallit.documentation.tokenValidator = (function() {
      * @type {any}
      */
     var $parameterListContainer = $('#request-parameters-content');
-    
+
+    /**
+     * Th display of the params
+     * @type {any}
+     */
+    var $paramsDisplay = $('#generated-values-request-parameters');
+
+
     /**
      * This function sets the current time into the chooser
      * 
@@ -115,7 +122,12 @@ wallit.documentation.tokenValidator = (function() {
             tokenValue.method = methodString;
             
             if (methodString == 'GET') {
-                $parameterListContainer.slideUp();
+                $parameterListContainer.slideUp(function() {
+                    var $rows = $('.row', $parameterListContainer);
+                    $('input', $rows.first()).val('');
+                    $rows.not(':first').remove();
+                    recalculateParameters();
+                });
             }
             else {
                 $parameterListContainer.slideDown();
@@ -142,6 +154,18 @@ wallit.documentation.tokenValidator = (function() {
         }).on('change', updateTokenValuesDisplayBox).on('change', updateHashedTokenDisplay);
     }
 
+    /**
+     * Handles changes to the parameters
+     */
+    function addParameterHandler()
+    {        
+        $('#request-parameters-content').on('change', 'input', function() {
+            recalculateParameters();
+            updateTokenValuesDisplayBox();
+            updateHashedTokenDisplay();
+        });
+    }
+    
     /**
      * If secret is changed, call the token updater
      */
@@ -210,7 +234,41 @@ wallit.documentation.tokenValidator = (function() {
             e.preventDefault();
             var $row = $(this).closest('.row');
             $row.remove();
+            recalculateParameters();
+            updateTokenValuesDisplayBox();
+            updateHashedTokenDisplay();
         });
+    }
+
+    /**
+     * This handles recalculating the request parameters and dispalying them properly on the screen and as part
+     * of the token
+     */
+    function recalculateParameters()
+    {
+        var parameters = [];
+        $('#request-parameters-content .row').each(function(idx) {
+            var $key = $('input:first', this),
+                $value = $('input:last', this);
+            if ($key.val()) {
+                parameters.push({
+                    key: $key.val().toLowerCase(),
+                    value: $value.val().toLowerCase()
+                });
+            }
+        });
+        parameters.sort(function(a, b) {
+            if (a.key < b.key) return -1;
+            if (a.key > b.key) return 1;
+            return 0;
+        });
+        
+        var parameterString = parameters.map(function(parameter, idx) {
+            return parameter.key + '=' + parameter.value;
+        }).join('&');
+
+        tokenValue.params = parameterString;
+        $paramsDisplay.html(parameterString ? parameterString : 'N/A');
     }
     
     return {
@@ -218,6 +276,7 @@ wallit.documentation.tokenValidator = (function() {
             addMethodHandler();
             addTimeHandlers();
             addURLHandler();
+            addParameterHandler();
             addSecretHandler();
             setCurrentTime();
             addParameterListManagementHandler();

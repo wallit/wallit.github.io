@@ -16,7 +16,7 @@ hr.spacer-only {
 }
 
 #request-parameters-content {
-    xdisplay: none;
+    display: none;
 }
 #request-parameters-content .row:first-of-type .delete {
     display: none;
@@ -27,7 +27,7 @@ hr.spacer-only {
 .parameter-list-controls a {
     opacity: 0.4;
 }
-.parameter-list-controls a:hover {
+.parameter-list-controls a:hover, .parameter-list-controls a:focus {
     opacity: 1;
 }
 
