@@ -15,6 +15,22 @@ hr.spacer-only {
     font-size: 0.8rem;
 }
 
+#request-parameters-content {
+    xdisplay: none;
+}
+#request-parameters-content .row:first-of-type .delete {
+    display: none;
+}
+.row .parameter-list-controls {
+    padding-top: 1rem;
+}
+.parameter-list-controls a {
+    opacity: 0.4;
+}
+.parameter-list-controls a:hover {
+    opacity: 1;
+}
+
 #generated-values dt {
     font-weight: bold;
 }

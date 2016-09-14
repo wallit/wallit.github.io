@@ -35,6 +35,8 @@
                             <select id="request-method">
                                 <option value="" disabled selected>Choose method</option>
                                 <option value="GET">GET</option>
+                                <option value="POST">POST</option>
+                                <option value="PUT">PUT</option>
                             </select>
                             <label for="request-method">API Call Request Method</label>
                         </div>
@@ -259,6 +261,23 @@
                         <div class="input-field">
                             <input placeholder="https://..." id="request-url" type="url" class="validate" required>
                             <label for="request-url">Full URL of Request</label>
+                        </div>
+                        <div class="input-field-group" id="request-parameters-content">
+                            <label>Request Parameters</label>
+                            <div class="row">
+                                <div class="col s5 input-field">
+                                    <input name="field_name" placeholder="Parameter Name">
+                                </div>
+                                <div class="col s5 input-field">
+                                    <input name="field_value" placeholder="Value">
+                                </div>
+                                <div class="col s2 parameter-list-controls">
+                                    <a href="#" class="add green-text"><i class="material-icons">playlist_add</i></a>
+                                    
+                                    <a href="#" class="delete red-text"><i class="material-icons">delete</i></a>
+
+                                </div>
+                            </div>
                         </div>
                         <div class="input-field">
                             <input placeholder="shhh!" id="secret" type="text" class="validate" autocomplete="off">

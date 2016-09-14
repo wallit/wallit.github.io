@@ -56,6 +56,12 @@ wallit.documentation.tokenValidator = (function() {
      * @type {any}
      */
     var $secret = $('#secret');
+
+    /**
+     * The container for the parameter list
+     * @type {any}
+     */
+    var $parameterListContainer = $('#request-parameters-content');
     
     /**
      * This function sets the current time into the chooser
@@ -107,6 +113,13 @@ wallit.documentation.tokenValidator = (function() {
             
             $methodDisplay.html(methodString);
             tokenValue.method = methodString;
+            
+            if (methodString == 'GET') {
+                $parameterListContainer.slideUp();
+            }
+            else {
+                $parameterListContainer.slideDown();
+            }
         }).on('change', updateTokenValuesDisplayBox).on('change', updateHashedTokenDisplay);
     }
 
@@ -181,6 +194,24 @@ wallit.documentation.tokenValidator = (function() {
     {
         return tokenValue.method + "\n" + tokenValue.time + "\n" + tokenValue.uri + "\n" + tokenValue.params;
     }
+
+    /**
+     * handles adding and removing rows
+     */
+    function addParameterListManagementHandler()
+    {
+        $('#request-parameters-content').on('click', '.add', function(e) {
+            e.preventDefault();
+            var $row = $(this).closest('.row');
+            var $newRow = $row.clone();
+            $('input', $newRow).val('');
+            $row.after($newRow);
+        }).on('click', '.delete', function(e) {
+            e.preventDefault();
+            var $row = $(this).closest('.row');
+            $row.remove();
+        });
+    }
     
     return {
         init: function() {
@@ -189,6 +220,7 @@ wallit.documentation.tokenValidator = (function() {
             addURLHandler();
             addSecretHandler();
             setCurrentTime();
+            addParameterListManagementHandler();
         }
     }
 })();
