@@ -55,7 +55,45 @@ an associated resource with the proper access and pricing information.  This API
 
 ## Callbacks
 
+Certain Wallit events will trigger a POST to an external URL.  This system is referred to as the callback system.  Currently,
+the callback system is limited to a few events surrounding external subscriber import, export, linking and purchases.  The 
+callback system issues a callback POST to your URL in the form of an event type and a token.  Then, you may retrieve the data
+from the Manage API using this event name and token.  
+
 ## Javascript Library
+
+The Javascript library is responsible for the client-side or browser-based functionality.  This library allows you to do various
+integrations with Wallit data to customize your user experience, can create the embedded paywall, can issue a redirect or modal
+paywall, handles the smart wallet, and any number of other things.  There's a whole lengthy section of the documentation for
+this particular library.
+
+As we covered earlier, there are a number of ways to do resource protection and access control with Wallit.  All methods use
+the Javascript library except for a server-side only redirect option.  Client-side and hybrid approaches still require the 
+javascript library.  
 
 ## SDKs
 
+Without a doubt, programmers always love trying to figure out how to use a new API.  The challenges, the research, the
+trial and error - oh man!  So delightful!
+
+Although the previous statement is meant to be a joke, we do take our APIs very seriously.  We hope that they're easy to use 
+and you have no problems implementing them.  (If you do, make sure to let us know!)  But sometimes, it's just nice to 
+save time and use a Software Development Kit that abstracts the API calls for you.  We provide a SDK in two different languages
+to help you jump start your Wallit integration.  What makes this so cool is that you don't have to know the exact API 
+end points to use, which parameters to send, or even understand the tokenization and authentication scheme  It's all handled
+for you.  Simply pass in some API keys and you're good to go.
+
+**PHP SDK** Our [PHP SDK](https://github.com/wallit/wallit-php-api) allows you to integrate your Access API and Manage API
+calls into your application by configuring a service and using PHP objects and classes.  You send in a known data request object
+and receive a known data response object.
+
+**NodeJS SDK** The [NodeJS SDK](https://github.com/nodejs) makes integration with NodeJS easier.  Just like the PHP SDK, this
+abstracts calls to the Access API and the Manage API by using a javascript service object and data class.  The response is
+returned to a callback function in the form of a plain JSON object.
+
+## What's Next?
+
+Now that you have an idea of the main interfaces and concepts, it's time to move on to some of the common scenarios - basically
+the tldr; version of the documentation.
+
+[Go to Common Scenarios](./common-scenarios.md)
