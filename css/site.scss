@@ -1,0 +1,19 @@
+---
+---
+@import "custom-flow-text";
+@import "syntax-highlighting";
+
+strong {
+  font-weight: 900;
+}
+
+nav img {
+  height: 64px;
+  padding: 10px;
+}
+
+code.highlighter-rouge {
+  background-color: #343642;
+  color: #C1C2C3;
+  padding: 0 0.4rem;
+}

@@ -4,8 +4,8 @@ permalink: /overview-of-user-interfaces
 ---
 # Overview of User Interfaces
 
-**Should you read this?** Read this if you want to know what kind of interfaces we have, and why you might want to use
-them.  Nothing worse than hearing "I was on the Access UI screen" from a customer and not knowing what they were talking about!
+***Should you read this?** Read this if you want to know what kind of interfaces we have, and why you might want to use
+them.  Nothing worse than hearing "I was on the Access UI screen" from a customer and not knowing what they were talking about!*
 
 As a developer, it's easy to fall into the habit of considering user interfaces as only the screens we can see.  However, 
 we consider user interfaces as both our web pages, APIs and SDKs. It's important to get an overview of all the user interfaces
@@ -100,4 +100,4 @@ returned to a callback function in the form of a plain JSON object.
 Now that you have an idea of the main interfaces and concepts, it's time to move on to some of the common scenarios - basically
 the tldr; version of the documentation.
 
-[Go to Common Scenarios](./common-scenarios)
+[Go to Common Scenarios]({{site.baseurl}}/common-scenarios){: .class_name}

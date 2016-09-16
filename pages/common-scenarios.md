@@ -4,7 +4,7 @@ permalink: /common-scenarios
 ---
 # Common Scenarios
 
-**Should you read this?** Yup.
+***Should you read this?** Yup.*
 
 Chances are, if this is your first time here, you've skipped right to this page.  Good choice!  We're going to show you
 some common scenarios and the Wallit integrations needed to achieve them.  A good ol' copy+paste of one of these 

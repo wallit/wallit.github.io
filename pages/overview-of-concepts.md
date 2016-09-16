@@ -4,8 +4,8 @@ permalink: /overview-of-concepts
 ---
 # Overview of Concepts
 
-**Should you read this?** Read this if you want to understand some of the jargon used later in the documentation or why
-things happen the way they do.  
+***Should you read this?** Read this if you want to understand some of the jargon used later in the documentation or why
+things happen the way they do.*
 
 ## A Glossary - Kind of
 
@@ -68,7 +68,7 @@ There are two mechanisms that can be used to do a resource access event query.
 We provide a javascript (front-end) and REST API (back-end) mechanism for content protection.  But no, that's not all! You
 can even combine these to implement a hybrid approach.
 
-**Javascript Library / Front End**  The javascript library creates an embedded paywall that restricts access to your content.  
+**Javascript Library / Front End**  The javascript library creates an embedded paywall that restricts access to your content.
 You choose where it's placed in relation to the beginning of your content and it takes care of hiding the rest of it.  The 
 content was technically still loaded, but the average user would not be able to access it.  You, dear programmer, probably 
 could get around this really quickly though.
@@ -107,7 +107,7 @@ other subscription service.  This means the customer only has one place to do th
 
 ## What's Next?
 
-Time to move on to the [overview of user interfaces](./overview-of-interfaces) which will give you a better idea of what
+Time to move on to the [overview of user interfaces]({{site.baseurl}}/overview-of-user-interfaces) which will give you a better idea of what
 user interfaces and programmer interfaces we have - and why you should care.
 
-[Go to Overview of User Interfaces](./overview-of-interfaces)
+[Go to Overview of User Interfaces]({{site.baseurl}}/overview-of-user-interfaces)

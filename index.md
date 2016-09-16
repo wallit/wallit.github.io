@@ -23,11 +23,14 @@ web platform, and how to integrate external subscription services.
 
 Have you ever had a meeting about an upcoming meeting? Then this should seem familiar: let us document what we're going to document:
 
-* **Overview of Concepts** What API to use & why, how things generally work, and where to go (hey now!) to get your task done
-* **Overview of Services** What various parts of our software are - and why they exist
-* **Example and Common Scenarios** Let's face it - most docs are **tldr;** - so scan this list first to see if we've already implemented your scenario
-* **Detailed API Documentation** Here we get into how to make API calls, what endpoints are, and the objects you can send/expect
+**[Overview of Concepts]({{site.baseurl}}/overview-of-concepts)** What API to use & why, how things generally work, and where to go (hey now!) to get your task done
+
+**[Overview of User Interfaces]({{site.baseurl}}/overview-of-user-interfaces)** An explanation of the various user interfaces to Wallit
+
+**[Example and Common Scenarios]({{site.baseurl}}/common-scenarios)** Let's face it - most docs are **tldr;** - so scan this list first to see if we've already implemented your scenario
+
+**[Detailed API Documentation]({{site.baseurl}}/api)** Here we get into how to make API calls, what endpoints are, and the objects you can send/expect
 
 Clear as mud? Let's get started.
 
-[Go to Overview of Concepts](./overview-of-concepts)
+**[Go to Overview of Concepts]({{site.baseurl}}/overview-of-concepts)**
