@@ -1,3 +1,7 @@
+---
+title: Overview of User Interfaces
+permalink: /overview-of-user-interfaces
+---
 # Overview of User Interfaces
 
 **Should you read this?** Read this if you want to know what kind of interfaces we have, and why you might want to use
@@ -96,4 +100,4 @@ returned to a callback function in the form of a plain JSON object.
 Now that you have an idea of the main interfaces and concepts, it's time to move on to some of the common scenarios - basically
 the tldr; version of the documentation.
 
-[Go to Common Scenarios](./common-scenarios.md)
+[Go to Common Scenarios](./common-scenarios)

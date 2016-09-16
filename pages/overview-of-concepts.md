@@ -1,3 +1,7 @@
+---
+title: Overview of Concepts
+permalink: /overview-of-concepts
+---
 # Overview of Concepts
 
 **Should you read this?** Read this if you want to understand some of the jargon used later in the documentation or why
@@ -103,7 +107,7 @@ other subscription service.  This means the customer only has one place to do th
 
 ## What's Next?
 
-Time to move on to the [overview of user interfaces](./overview-of-interfaces.md) which will give you a better idea of what
+Time to move on to the [overview of user interfaces](./overview-of-interfaces) which will give you a better idea of what
 user interfaces and programmer interfaces we have - and why you should care.
 
-[Go to Overview of User Interfaces](./overview-of-interfaces.md)
+[Go to Overview of User Interfaces](./overview-of-interfaces)

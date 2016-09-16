@@ -1,3 +1,7 @@
+---
+title: Common Scenarios
+permalink: /common-scenarios
+---
 # Common Scenarios
 
 **Should you read this?** Yup.

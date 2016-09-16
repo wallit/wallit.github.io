@@ -1,3 +1,6 @@
+---
+title: Wallit Technical Documentation
+---
 # Wallit Technical Documentation
 
 > How many software developers does it take to change a lightbulb?  None! That's a hardware problem!
@@ -27,4 +30,4 @@ Have you ever had a meeting about an upcoming meeting? Then this should seem fam
 
 Clear as mud? Let's get started.
 
-[Go to Overview of Concepts](./overview-of-concepts.md)
+[Go to Overview of Concepts](./overview-of-concepts)
