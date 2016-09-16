@@ -33,4 +33,4 @@ Have you ever had a meeting about an upcoming meeting? Then this should seem fam
 
 Clear as mud? Let's get started.
 
-**[Go to Overview of Concepts]({{site.baseurl}}/overview-of-concepts)**
+[Go to Overview of Concepts →]({{site.baseurl}}/overview-of-concepts){: .btn}

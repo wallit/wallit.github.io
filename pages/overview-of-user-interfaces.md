@@ -100,4 +100,4 @@ returned to a callback function in the form of a plain JSON object.
 Now that you have an idea of the main interfaces and concepts, it's time to move on to some of the common scenarios - basically
 the tldr; version of the documentation.
 
-[Go to Common Scenarios]({{site.baseurl}}/common-scenarios){: .class_name}
+[Go to Common Scenarios →]({{site.baseurl}}/common-scenarios){: .btn}
