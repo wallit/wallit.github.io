@@ -63,12 +63,23 @@ $article = $articleService->findOneById('14A33175-51CF-400C-8487-C5C4CEAE93E5');
 
 // create the options for this call to wallit
 $options = new \Wallit\Options\Access\GetResourceFromResourceKey();
-$options->setResourceKey('14A33175-51CF-400C-8487-C5C4CEAE93E5') // ID of article internally = resource key @ Wallit
-        ->setResourceURL($article->getFullURL()); // returns something like https://your.site/read/this-article
+
+// ID of article internally = resource key @ Wallit
+$options->setResourceKey('14A33175-51CF-400C-8487-C5C4CEAE93E5');
+
+// send something like https://your.site/read/this-article
+$options->setResourceURL($article->getFullURL()); 
 
 // create the connection using a logger and your Wallit credentials
 $logger = new \Monolog\Logger('Wallit Request');
-$connection = new \Wallit\Connection($manageApiKey, $manageSecretKey, $accessApiKey, $accessSecretKey, new \Wallit\Request\Curl(), $logger);
+$connection = new \Wallit\Connection(
+    $manageApiKey, 
+    $manageSecretKey, 
+    $accessApiKey, 
+    $accessSecretKey, 
+    new \Wallit\Request\Curl(), 
+    $logger
+);
 
 // get the response object
 $responseData = $connection->request($options, $options->getDataObject());
@@ -100,7 +111,14 @@ First, create PHP code that will create a form.
 <?php
 // create the connection using a logger and your Wallit credentials
 $logger = new \Monolog\Logger('Wallit Request');
-$connection = new \Wallit\Connection($manageApiKey, $manageSecretKey, $accessApiKey, $accessSecretKey, new \Wallit\Request\Curl(), $logger);
+$connection = new \Wallit\Connection(
+    $manageApiKey, 
+    $manageSecretKey, 
+    $accessApiKey, 
+    $accessSecretKey, 
+    new \Wallit\Request\Curl(), 
+    $logger
+);
 
 // get the property info to retrieve the pricing groups
 $options = new \Wallit\Options\Management\GetProperty();
@@ -124,13 +142,21 @@ Then, process the posted values. (Remember, this is example code, so your error 
 
 ```php
 <?php
-// It's important to do this whole process again to validate that the pricing group is still valid.  
-// You'd hate to run into a race condition where someone removed a pricing group in the ManageUI but you 
-// still attempted to post those values to the API.  Hopefully by refilling the form with the pricing group
-// values, you will be able to validate that the posted pricing group ID still exists.
+// It's important to do this whole process again to validate that the pricing group is
+// still valid. You'd hate to run into a race condition where someone removed a pricing group
+// in the Manage UI but you still attempted to post those values to the API.  Hopefully by refilling
+// the form with the pricing group // values, you will be able to validate that the posted
+// pricing group ID still exists.
 
 $logger = new \Monolog\Logger('Wallit Request');
-$connection = new \Wallit\Connection($manageApiKey, $manageSecretKey, $accessApiKey, $accessSecretKey, new \Wallit\Request\Curl(), $logger);
+$connection = new \Wallit\Connection(
+    $manageApiKey, 
+    $manageSecretKey, 
+    $accessApiKey, 
+    $accessSecretKey, 
+    new \Wallit\Request\Curl(), 
+    $logger
+);
 $options = new \Wallit\Options\Management\GetProperty();
 $propertyData = $connection->request($options, $options->getDataObject());
 $pricingGroupOptions = [];
@@ -141,7 +167,9 @@ $form = new Form\AddBlog();
 $form->getInput('wallit-pricing-group')->setOptions($propertyData);
 
 if ($form->validate($_POST)) {
-    if ($blogObject = $blogService->create($form->getValues())) {  // clearly extremely efficient pseudo code 
+    
+    // clearly extremely efficient pseudo code that handles saving form values and creating the object
+    if ($blogObject = $blogService->create($form->getValues())) {   
     
         $options = new \Wallit\Options\Management\SaveResource();
         $options->setExternalKey($blogObject->getId())
