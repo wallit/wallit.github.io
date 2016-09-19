@@ -202,4 +202,131 @@ Sounds good?  Get the [Wallit WordPress Plugin Here](https://github.com/wallit/w
 
 ## Hybrid Approach Using Javascript Front-end and Back-end Protection
 
-@todo
+**Scenario** You want to take advantage of the embedded paywall and other front-end javascript features, but want extra 
+security and protection for your content. It is important not to send protected content, even if it's obscured, to unauthorized
+users.
+
+**Solution** The Wallit implementation on your site will consist of two parts.  The first will be a javascript, client-side
+implementation which loads the full content after authorization via ajax.  The second part is a server-side authorization
+piece that will only send the full content to authorized users, otherwise it will return a preview.
+
+Let's break this down into three pieces using our PHP SDK and our Javascript library.
+
+First step: Send a preview (like maybe the first paragraph or a known preview.)
+
+```php
+<?php
+$articleId = '14A33175-51CF-400C-8487-C5C4CEAE93E5';
+$article = $articleService->findOneById($articleId);
+
+$viewParams = [
+    'title' => $article->getTitle(),
+    'bodyPreview' => $article->getBodyPreview(),
+    'externalKey' => $articleId
+];
+
+View::display('read-article', $viewParams);
+```
+
+Here it's important to note that we've sent a preview of the content to the view.  In addition, we've passed the external
+key to the view layer - so that can be inserted into the javascript library object.
+
+Next, let's take a look at our HTML based PHP view.
+
+```html
+<head>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdn.wallit.io/paywall.min.js"></script>
+    <script type="text/javascript">
+        Wallit.paywall.init('<?= $view->externalKey ?>', {
+            accessGranted: function(data) {
+                $.get('/ajax/load-article?id=<?= $view->externalKey ?>', function(data) {
+                    $('article').html(data);
+                });
+            }
+        });
+      </script>
+</head>
+<body>
+    <section>
+        <h1><?= $view->title ?></h1>
+        <article>
+            <?= $view->bodyPreview ?>
+        </article>
+    </section>
+</body>
+```
+
+This code is assuming that this view is being processed by some sort of PHP code and that the `$view` variable corresponds
+to the parameters that were sent in the previous section.  We've also added jQuery to make the AJAX request easier, but
+that certainly is not required.
+
+The head contains the request to Wallit javascript. This *should* happen in the head of the document.  Note how the resource's
+external key is retrieved from the view object.  This is the same that was used in the previous section and how we'll refer
+to this content going forward.  Then, the `accessGranted` callback is fired when a visitor is granted access to some content.
+
+The `accessGranted` callback does an AJAX request to another script which should return the full article content.  
+
+Let's take a look at that code that is run by the AJAX request.
+
+```php
+<?php
+// create the options for this call to wallit
+$options = new \Wallit\Options\Access\GetResourceFromResourceKey();
+
+// ID of article internally = resource key @ Wallit, retrieved from call
+$options->setResourceKey($_GET['id']);
+
+// Get the URL from the referrer
+$options->setResourceURL($_SERVER['HTTP_REFERER']); 
+
+// Set the user token (the "magic" of authorization)
+$options->setUserToken($_COOKIE['WallitUT']);
+
+// create the connection using a logger and your Wallit credentials
+$logger = new \Monolog\Logger('Wallit Request');
+$connection = new \Wallit\Connection(
+    $manageApiKey, 
+    $manageSecretKey, 
+    $accessApiKey, 
+    $accessSecretKey, 
+    new \Wallit\Request\Curl(), 
+    $logger
+);
+
+// get the response object
+$responseData = $connection->request($options, $options->getDataObject());
+
+// if it's not 'Grant' - then give an error 403
+if ($responseData->getAccessAction() != \Wallit\Data\ResourceAccess::ACCESS_ACTION_GRANT) {
+    die(header("HTTP/1.1 403 Restricted Content"));
+}
+
+// get article from your service
+$article = $articleService->findOneById($_GET['id']);
+
+View::display('raw-article-body', ['body'=>$article->getBody()]);
+```
+
+This creates a request to the Access API using the PHP SDK.  We use the cookie value of `WallitUT` which was created and
+saved by the embedded paywall's authorization request and response mechanism.  Then, if the access is granted (which it
+should be), the article is retrieved and the full body is sent.  That is what the AJAX request uses to replace the content.
+If the response is not of authorization granted, it's most likely a spider or some shifty character trying to access your
+protected code directly.  In our case, we're polite, and just send a 403 error.  The worst thing to see would be some 
+cached articles in Google saying "Stop trying to hack me, hacker!" - so we suggest being polite!
+
+## Standard Programmer Disclaimer
+
+Please remember these are just a common scenarios and bits of code to get you 80% of the way there.  
+We'd hate for you to be reading this and say "oh emm gee - they didn't escape their output" or "why didn't they use
+a loading indicator."  Your code may differ - in fact, it should differ from this.  But, this should give you a good 
+place to begin.  We feel this is a necessary disclaimer because it's so easy to want to refactor and re-code these 
+examples every few days. But enough is enough, right?  Plus, since we're using pseudo code, maybe you've already picked 
+up that this is not 100% the best way to do things... :)
+
+## What's Next?
+
+By now, you're probably itching to make some of your own implementation customizations.  That's why you should continue
+to the next section.
+
+[Detailed API and Library Documentation →]({{site.baseurl}}/api){: .btn}
