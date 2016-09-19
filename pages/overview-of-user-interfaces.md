@@ -48,8 +48,8 @@ these APIs.
 
 **Access API** This API is used only for determining access to specific resources. It resides at [accessapi.wallit.io](https://accessapi.wallit.io) and 
 is optimized for speed.  This API is used behind the scenes with our javascript library (explained later) as well as for 
-server-side access control.  Basically, can the current visitor get at this resource; true or false?  That's what this API does.  
-It's black and white - kind of like what we assume one of our engineers sees daily - although he swears it's just a red/green "deficiency."
+server-side access control.  Basically, can the current visitor get at this resource; true or false?  That's what this API does. It's 
+black and white - kind of like what we assume one of our engineers sees daily - although he swears it's just a red/green "deficiency."
 
 **Manage API** The manage API contains a subset of the functionality found in the Manage UI.  This API interface will 
 allow you to automatically create resources, edit them, manage pricing and subscription groups, and more.  This API is
