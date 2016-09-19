@@ -317,12 +317,11 @@ cached articles in Google saying "Stop trying to hack me, hacker!" - so we sugge
 
 ## Standard Programmer Disclaimer
 
-Please remember these are just a common scenarios and bits of code to get you 80% of the way there.  
-We'd hate for you to be reading this and say "oh emm gee - they didn't escape their output" or "why didn't they use
-a loading indicator."  Your code may differ - in fact, it should differ from this.  But, this should give you a good 
-place to begin.  We feel this is a necessary disclaimer because it's so easy to want to refactor and re-code these 
-examples every few days. But enough is enough, right?  Plus, since we're using pseudo code, maybe you've already picked 
-up that this is not 100% the best way to do things... :)
+Please remember these are just a common scenarios and bits of code to get you 80% of the way there.  We'd hate for you 
+to be reading this and say "oh emm gee - they didn't escape their output" or "why didn't they use a loading indicator." Your 
+code may differ - in fact, it should differ from this.  But, this should give you a good place to begin.  We feel this 
+is a necessary disclaimer because it's so easy to want to refactor and re-code these examples every few days. But enough 
+is enough, right?  Plus, since we're using pseudo code, maybe you've already picked up that this is not 100% the best way to do things... :)
 
 ## What's Next?
 
