@@ -47,10 +47,23 @@ h2.card-title {
 #generated-values-combined {
     white-space: pre;
 }
+
 #help-link {
     display: none;
     padding-top: 0.6rem;
     text-align: center;
+}
+#tester .btn {
+    margin-top: 1.6rem;
+}
+#tester .progress {
+    display: none;
+}
+#test-progress {
+    display: none;
+}
+#results {
+    display: none;
 }
 
 @media only screen and (min-width: 993px) {

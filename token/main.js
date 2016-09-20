@@ -74,6 +74,18 @@ wallit.documentation.tokenValidator = (function() {
      * @type {any}
      */
     var $helpLink = $('#help-link');
+
+    /**
+     * The form for testing the token
+     * @type {any}
+     */
+    var $testTokenForm = $('#test-token');
+
+    /**
+     * The button that we use to display some progress
+     * @type {any}
+     */
+    var $testTokenFormButton = $('.btn', $testTokenForm);
     
     /**
      * This function sets the current time into the chooser
@@ -277,6 +289,41 @@ wallit.documentation.tokenValidator = (function() {
         tokenValue.params = parameterString;
         $paramsDisplay.html(parameterString ? parameterString : 'N/A');
     }
+
+    /**
+     * Add the token tester handler
+     */
+    function addTokenTesterHandler()
+    {
+        $('#help-link a').leanModal({
+            complete: function() {
+                $testTokenFormButton.removeClass('disabled').html($testTokenFormButton.data('message-original'));
+            }
+        });
+
+        $('#test-token').on('submit', function(e) {
+            e.preventDefault();
+            $testTokenFormButton.addClass('disabled').html($testTokenFormButton.data('message-in-progress'));
+            startTokenTests();
+        });
+    }
+    
+    function startTokenTests()
+    {
+        $('#test-progress').slideDown();
+        var $progressDisplay = $('#test-count-progress'), progress = 0, yourToken = $('#your-token').val();
+
+        // check length
+        progress += 1;
+        $progressDisplay.html(progress);
+        if (yourToken.length != 44) {
+            $testTokenFormButton.removeClass('disabled').html($testTokenFormButton.data('message-original'));
+            $('#test-progress').slideUp(function() {
+                $('#results').html('The token is not long enough.  It should be 44 characters in length. Perhaps it is truncated?  Another thing to consider: make sure you have used binary HMAC and base64 encoding').slideDown();
+            });
+        }
+    }
+
     
     return {
         init: function() {
@@ -287,6 +334,7 @@ wallit.documentation.tokenValidator = (function() {
             addSecretHandler();
             setCurrentTime();
             addParameterListManagementHandler();
+            addTokenTesterHandler();
         }
     }
 })();
@@ -300,5 +348,4 @@ $(function() {
     });
     wallit.documentation.tokenValidator.init();
     $('select').material_select();
-    $('#help-link a').leanModal();
 });
