@@ -295,35 +295,61 @@ wallit.documentation.tokenValidator = (function() {
      */
     function addTokenTesterHandler()
     {
+        /** define some displays **/
+        var $testProgress = $('#test-progress'), $progressDisplay = $('#test-count-progress'), $results = $('#results');
+
+        /** used to "re-enable" the form for the next call or a message display **/
+        var resetTokenTesterForm = function(callback) {
+            $testTokenFormButton.removeClass('disabled').html($testTokenFormButton.data('message-original'));
+            $testProgress.slideUp(callback);
+        };
+        
+        /** get rid of results **/
+        var resetResults = function() {
+            $results.html('').slideUp();
+            progress = 0;
+        };
+        
+        /** show results after re-enabling the form **/
+        var showResults = function(message) {
+            resetTokenTesterForm(function() {
+                $('#results').html(message).slideDown()
+            });
+        };
+        
+        /** handle the display of the progress / and increases of it **/
+        var progress = 0, increaseProgress = function() {
+            progress++;
+            $progressDisplay.html(progress);
+        };
+        
+        /** initialize the modal for if they need help **/
         $('#help-link a').leanModal({
-            complete: function() {
-                $testTokenFormButton.removeClass('disabled').html($testTokenFormButton.data('message-original'));
-            }
+            complete: resetTokenTesterForm
         });
 
+        /** runs the test if the token is submitted **/
         $('#test-token').on('submit', function(e) {
             e.preventDefault();
             $testTokenFormButton.addClass('disabled').html($testTokenFormButton.data('message-in-progress'));
-            startTokenTests();
+            resetResults();
+            
+            $testProgress.slideDown();
+            var yourToken = $('#your-token').val();
+
+            // check length
+            increaseProgress();
+            if (yourToken.length != 44) {
+                showResults('The token is not long enough.  It should be 44 characters in length. Perhaps it is truncated?  Another thing to consider: make sure you have used binary HMAC and base64 encoding');
+                return;
+            }
+            
+            // @todo here is the area to test more of them
+            
+            // display a message that we can't help them
+            showResults("We weren't able to figure out what's wrong here.  If you're still stuck, please contact us and our integration team will try to help!");
         });
     }
-    
-    function startTokenTests()
-    {
-        $('#test-progress').slideDown();
-        var $progressDisplay = $('#test-count-progress'), progress = 0, yourToken = $('#your-token').val();
-
-        // check length
-        progress += 1;
-        $progressDisplay.html(progress);
-        if (yourToken.length != 44) {
-            $testTokenFormButton.removeClass('disabled').html($testTokenFormButton.data('message-original'));
-            $('#test-progress').slideUp(function() {
-                $('#results').html('The token is not long enough.  It should be 44 characters in length. Perhaps it is truncated?  Another thing to consider: make sure you have used binary HMAC and base64 encoding').slideDown();
-            });
-        }
-    }
-
     
     return {
         init: function() {
