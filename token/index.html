@@ -25,7 +25,7 @@
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Request Content</span>
+                        <h2 class="card-title">Request Content</h2>
                         <p>
                             Fill in the settings in your API request here.  Then, compare the token that
                             is generated to the one you're using in your request.
@@ -288,15 +288,16 @@
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Generated Token</span>
-                        <div>
-                            <mark id="hashed-token">N/A</mark>
+                        <h2 class="card-title">Generated Token</h2>
+                        <mark id="hashed-token">N/A</mark>
+                        <div class="center-align force-show" id="help-link">
+                            <a tabindex="-1" href="#tester">Help! Mine is different!</a>
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Generated Values</span>
+                        <h2 class="card-title">Generated Values</h2>
                         <p>This card shows the values that have been used to generate the token.</p>
                         <dl id="generated-values">
                             <dt>Request Method</dt>
@@ -315,6 +316,15 @@
             </div>
         </div>
     </main>
+    <div id="tester" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script src="sha256.js"></script>

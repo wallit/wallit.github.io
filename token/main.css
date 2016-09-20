@@ -1,3 +1,7 @@
+.force-show {
+    display: block !important;
+}
+
 nav .brand-logo {
     padding-left: 1rem;
 }
@@ -13,6 +17,9 @@ hr.spacer-only {
 }
 .input-help {
     font-size: 0.8rem;
+}
+h2.card-title {
+    margin: 0;
 }
 
 #request-parameters-content {
@@ -39,6 +46,11 @@ hr.spacer-only {
 }
 #generated-values-combined {
     white-space: pre;
+}
+#help-link {
+    display: none;
+    padding-top: 0.6rem;
+    text-align: center;
 }
 
 @media only screen and (min-width: 993px) {

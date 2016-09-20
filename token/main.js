@@ -64,12 +64,17 @@ wallit.documentation.tokenValidator = (function() {
     var $parameterListContainer = $('#request-parameters-content');
 
     /**
-     * Th display of the params
+     * The display of the params
      * @type {any}
      */
     var $paramsDisplay = $('#generated-values-request-parameters');
 
-
+    /**
+     * The help link display area
+     * @type {any}
+     */
+    var $helpLink = $('#help-link');
+    
     /**
      * This function sets the current time into the chooser
      * 
@@ -198,17 +203,19 @@ wallit.documentation.tokenValidator = (function() {
      */
     function updateHashedTokenDisplay()
     {
-        $hashedToken.html(function() {
-            if ($secret.val() && tokenValue.method && tokenValue.time && tokenValue.uri) {
-                var shaObj = new jsSHA("SHA-256", "TEXT");
-                shaObj.setHMACKey($secret.val(), "TEXT");
-                shaObj.update(getTokenizableString());
-                return shaObj.getHMAC("B64");
-            }
-            else {
-                return 'N/A';
-            }
-        });
+        var value = 'N/A';
+        if ($secret.val() && tokenValue.method && tokenValue.time && tokenValue.uri) {
+            var shaObj = new jsSHA("SHA-256", "TEXT");
+            shaObj.setHMACKey($secret.val(), "TEXT");
+            shaObj.update(getTokenizableString());
+            value = shaObj.getHMAC("B64");
+            $helpLink.slideDown();
+        }
+        else {
+            $helpLink.slideUp();
+        }
+
+        $hashedToken.html(value);
     }
 
     /**
@@ -293,4 +300,5 @@ $(function() {
     });
     wallit.documentation.tokenValidator.init();
     $('select').material_select();
+    $('#help-link a').leanModal();
 });
