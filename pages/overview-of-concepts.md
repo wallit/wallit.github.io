@@ -10,7 +10,7 @@ things happen the way they do.*
 ## A Glossary - Kind of
 
 In the rest of the documentation, we're going to use a few terms that you should know. It's probably easier to just read
-this section than to guess or make up the definitions of these later ;)
+this section than to guess or make up the definitions of these later ![Wink]({{site.baseurl}}/images/wink.svg){: .inline-image}
 
 **User Account** Your user account is what you use to log into the system.  Your user account is used to interact with 
 the system as a customer.  In addition, your user account can have access to one or more properties through the management
@@ -40,7 +40,8 @@ you can only use the management UI at this time.
 
 ## Resource Management
 
-There are three ways that resources can be created or modified.  (*does [The Count](https://en.wikipedia.org/wiki/Count_von_Count) impression* 3 Ways... ah ah ah!)
+There are three ways that resources can be created or modified.  (*does [![The Count]({{site.baseurl}}/images/the-count.png){: .circle .inline-image}](https://en.wikipedia.org/wiki/Count_von_Count) impression:* 
+3 Ways... ah ah ah! )
 
 **Management API** The Management API can be used to create resources or edit them.  You might use this in conjunction with a 
 web application or CMS to create new resources whenever your authors or editors publish resources to the web.
