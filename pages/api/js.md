@@ -70,35 +70,26 @@ So, let's take a look at all the key/value pairs of this configuration object!
 
 The following table illustrates the options to the javascript configuration object for the second parameter of the `init()` method call.
 
-| Key | Description | Requirements | Default Value |
-| --- | ------------| -------------| --------------|
-| resourceKey | The external key or resource key used to identify this resource in Wallit. | <= 50 characters, a-z, A-Z, 0-9, - allowed | The right-most 50 characters of the current URL.  Non-supported characters will be replaced with a dash (-). |
+{% include option-description.html 
+    key="resourceKey" 
+    description="The external key or resource key used to identify this resource in Wallit."
+    default="The right-most 50 characters of the current URL.  Non-supported characters will be replaced with a dash (-)."
+    requirements="<= 50 characters;;allowed characters: <code>a-z</code>, <code>A-Z</code>, <code>0-9</code>, <code>-</code>" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        resourceKey: '52458' // perhaps the internal ID of your content
+    });
+    "
+%}
 
-<hr>
-<br><br><br>
-
-
-<div class="option-description card">
-    <div>
-        <a href="#" class="active btn blue-grey darken-2"><code>resourceKey</code></a>
-        <a href="#" class="btn-flat">example</a>
-    </div>
-    <section class="card-content">
-        <p>The external key or resource key used to identify this resource in Wallit.</p>
-        <div class="row">
-            <div class="col s12 m6">
-                <ul class="collection with-header">
-                  <li class="collection-header"><h6>Requirements</h6></li>
-                    <li class="collection-item"><= 50 characters</li>
-                <li class="collection-item">allowed characters: <code>a-z</code>, <code>A-Z</code>, <code>0-9</code>, <code>-</code></li>
-              </ul>
-            </div>
-            <div class="col s12 m6">
-            <ul class="collection with-header">
-                              <li class="collection-header"><h6>Default Value</h6></li>
-                                <li class="collection-item">The right-most 50 characters of the current URL.  Non-supported characters will be replaced with a dash (-).</li>
-                          </ul>
-            </div>
-        </div>
-    </section>
-</div>
+{% include option-description.html 
+    key="resourceURL" 
+    description="The full URL for this resource."
+    default="The current URL"
+    requirements="RFC 1738 valid full URL" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        resourceURL: 'https://my-domain.com/my-article.html'
+    });
+    "
+%}

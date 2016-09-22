@@ -30,17 +30,28 @@ code.highlighter-rouge {
 /**
  * the style for the code option blocks in the JS
  */
+.option-description {
+  margin-top: 3rem;
+}
+.option-description section:last-child {
+  display: none;
+}
 .option-description > div a {
   text-transform: inherit;
   border-radius: 0;
   box-shadow: none;
+  color: #000000;
+  background-color: transparent;
 }
 .option-description > div a.active {
+  background-color: color('blue-grey', 'darken-2');
   border-bottom: 4px solid color("cyan", "lighten-3");
   box-shadow: none;
+  color: #ffffff;
 }
 .option-description > div a:hover:not(.active) {
   border-bottom: 4px solid color("grey", "lighten-1");
+  background-color: color("grey", "lighten-2");
   box-shadow: none;
 }
 

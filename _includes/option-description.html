@@ -1,0 +1,29 @@
+<div class="option-description card">
+    <div class="option-description-navigation">
+        <a href="#" class="active btn" data-panel=".description"><code>{{ include.key }}</code></a>
+        <a href="#" class="btn" data-panel=".example">example</a>
+    </div>
+    <section class="card-content description">
+        <p>{{ include.description }}</p>
+        <div class="row">
+            <div class="col s12 m6">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h6>Requirements</h6></li>
+                    {% assign requirements = include.requirements | split: ";;" %}
+                    {% for requirement in requirements %}
+                        <li class="collection-item">{{ requirement }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col s12 m6">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h6>Default Value</h6></li>
+                    <li class="collection-item">{{ include.default }}</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="card-content example">
+        {{ include.example | markdownify }}
+    </section>
+</div>
