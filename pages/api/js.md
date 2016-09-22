@@ -68,7 +68,9 @@ So, let's take a look at all the key/value pairs of this configuration object!
 
 ### Javascript Library Initialization Options
 
-The following table illustrates the options to the javascript configuration object for the second parameter of the `init()` method call.
+The following section illustrates the options to the javascript configuration object for the second parameter of the `init()` method call.
+
+#### `init()` Top Level Object
 
 {% include option-description.html 
     key="resourceKey" 
@@ -103,6 +105,71 @@ The following table illustrates the options to the javascript configuration obje
     example="
     wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
         desktopPaywallType: 'Redirect'
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="mobilePaywallType" 
+    description="The type of paywall to display at mobile resolutions, basically sizes smaller and equal to `mobileMaxWidth`"
+    default="The setting specified in Manage UI for this paywall."
+    requirements="Must be exactly one of the three available values."
+    enum="Modal;;Redirect;;Embedded"
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        mobilePaywallType: 'Redirect'
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="mobileMaxWidth" 
+    description="Resolutions in pixels less than or equal to this will be considered mobile."
+    default="The setting specified in Manage UI for this paywall."
+    requirements="Positive integer;;Do not include px suffix"
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        mobileMaxWidth: 450
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="closeURL" 
+    description="The URL that the user will be redirected to if they close a paywall of type `Modal` or `Redirect`"
+    default="The previous page in their browser's history."
+    requirements="RFC 1738 valid full URL" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        closeURL: 'https://your-site.com/canceled-paywall.html'
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="embeddedAdBlockerDetection" 
+    description="An object that contains settings for the adblock detection service."
+    default="The setting specified in Manage UI for this paywall."
+    requirements="Please see the [embeddedAdBlockerDetection](#embeddedadblockerdetection-object) object below." 
+%}
+
+Below, you'll find the details for each key that contained an object for its configuration.
+
+#### `embeddedAdBlockerDetection` Object
+
+{% include option-description.html 
+    key="openWarning" 
+    description="When the Ad Blocker action is set to Show Warning, this function executes allowing you to customize the user experience."
+    default="@todo What"
+    requirements="function signature: `function(title, message)`" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedAdBlockerDetection: {
+            openWarning: function(title, message) {
+                document.querySelector('#adblockerWarningTitle').textContent = title;
+                document.querySelector('#adblockerWarningFullMessage').textContent = message;
+            }
+        }
     });
     "
 %}

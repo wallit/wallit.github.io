@@ -1,7 +1,7 @@
 <div class="option-description card">
     <div class="option-description-navigation">
         <a href="#" class="active btn" data-panel=".description"><code>{{ include.key }}</code></a>
-        <a href="#" class="btn" data-panel=".example">example</a>
+        {% if include.example %}<a href="#" class="btn" data-panel=".example">example</a>{% endif %}
     </div>
     <section class="card-content description">
         <p>{{ include.description | markdownify }}</p>
@@ -12,7 +12,7 @@
                     <li class="collection-header"><h6>Requirements</h6></li>
                     {% assign requirements = include.requirements | split: ";;" %}
                     {% for requirement in requirements %}
-                        <li class="collection-item">{{ requirement }}</li>
+                        <li class="collection-item">{{ requirement | markdownify }}</li>
                     {% endfor %}
                 </ul>
             </div>
