@@ -77,28 +77,6 @@ The following table illustrates the options to the javascript configuration obje
 <hr>
 <br><br><br>
 
-<style>
-    .option-description > div a {
-        text-transform: inherit;
-        border-radius: 0;
-        box-shadow: none;
-    }
-    .option-description > div a.active {
-        border-bottom: 4px solid #80deea;
-        box-shadow: none;
-    }
-    .option-description > div a:hover:not(.active) {
-        border-bottom: 4px solid #aaaaaa;
-        box-shadow: none;
-    }
-    
-    .option-description .row {
-        margin-top: 1rem;
-    }
-    .option-description h6 {
-        font-weight: bold;
-    }
-</style>
 
 <div class="option-description card">
     <div>
