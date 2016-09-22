@@ -1,6 +1,6 @@
 ---
 title: Detailed API Documentation
-permalink: /api
+permalink: /api/
 ---
 # Detailed API Documentation
 
