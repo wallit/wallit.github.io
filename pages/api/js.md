@@ -93,3 +93,16 @@ The following table illustrates the options to the javascript configuration obje
     });
     "
 %}
+
+{% include option-description.html 
+    key="desktopPaywallType" 
+    description="The type of paywall to display at desktop resolutions, basically sizes larger than the `mobileMaxWidth`"
+    default="The setting specified in Manage UI for this paywall."
+    requirements="Must be exactly one of the three available values."
+    enum="Modal;;Redirect;;Embedded"
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        desktopPaywallType: 'Redirect'
+    });
+    "
+%}
