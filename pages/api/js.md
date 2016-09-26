@@ -213,10 +213,9 @@ The following section illustrates the options to the javascript configuration ob
     "
 %}
 
-** @todo part of embedded wallet pretty much **
 {% include option-description.html 
     key="getAccessMessage" 
-    description="This function replaces the embedded wallet's logic to determine the text of the access method displayed near the lock element."
+    description="This function replaces the embedded wallet's logic to determine the text of the access method displayed near the lock element.  See [embeddedWallet](#embeddedWallet-object) for other customization options."
     default="Built-in logic that uses the values of the `embeddedWallet` options."
     requirements="function signature: `function(resourceAccessData)`"
     example="
@@ -228,7 +227,6 @@ The following section illustrates the options to the javascript configuration ob
     });
     "
 %}
-** end @todo **
 
 {% include option-description.html 
     key="embeddedAdBlockerDetection" 
@@ -467,55 +465,10 @@ Below, you'll find the details for each key that contained an object for its con
 %}
 
 {% include option-description.html 
-    key="icon" 
-    description="A configuration object @todo"
-%}
-
-{% include option-description.html 
-    key="open" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function(url, isAdSupported, adSupportedTitle, adSupportedMessage)" 
-    example="
-        @todo
-    "
-%}
-
-{% include option-description.html 
-    key="updateHeight" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function(heightData)" 
-    example="
-        @todo
-    "
-%}
-
-{% include option-description.html 
-    key="onHeightUpdated" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function(heightData)" 
-    example="
-        @todo
-    "
-%}
-
-{% include option-description.html 
-    key="close" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function(url)" 
-    example="
-        @todo
-    "
-%}
-
-{% include option-description.html 
     key="onOpened" 
     description="@todo"
     default="@todo"
-    requirements="Function signature: function()" 
+    requirements="Function signature: function(url, isAdSupported, adSupportedTitle, adSupportedMessage)" 
     example="
         @todo
     "
@@ -526,6 +479,16 @@ Below, you'll find the details for each key that contained an object for its con
     description="@todo"
     default="@todo"
     requirements="Function signature: function()" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="onHeightUpdated" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function(heightData)" 
     example="
         @todo
     "
@@ -593,21 +556,127 @@ Below, you'll find the details for each key that contained an object for its con
 
 #### `embeddedConfirmation` Object
 
- "element": "",
-    "zIndex": 0,
-    open: function (title, message) { },
-    close: function () { },
-    onOpened: function (title, message) { },
-    onClosed: function () { }
+{% include option-description.html 
+    key="element" 
+    description="@todo"
+    default="@todo"
+    requirements="" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="zIndex" 
+    description="@todo"
+    default="@todo"
+    requirements="" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="open" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function(title, message)" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="close" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function()" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="onOpened" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function(title, message)" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="onClosed" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function()" 
+    example="
+        @todo
+    "
+%}
 
 #### `modalFrame` Object
 
-open: function (url) { },
-    updateHeight: function (heightData) { },
-    close: function () { },
-    "zIndex": 0
+{% include option-description.html 
+    key="zIndex" 
+    description="@todo"
+    default="@todo"
+    requirements="" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="open" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function(url)" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="close" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function()" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="updateHeight" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function(heightData)" 
+    example="
+        @todo
+    "
+%}
 
 #### `modalPaywall` Object
 
-open: function (url) { },
-    close: function () { }
+{% include option-description.html 
+    key="open" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function(url)" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="close" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function()" 
+    example="
+        @todo
+    "
+%}
+ 
