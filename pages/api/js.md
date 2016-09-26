@@ -147,20 +147,135 @@ The following section illustrates the options to the javascript configuration ob
 %}
 
 {% include option-description.html 
+    key="accessGranted" 
+    description="This function is called when the user is granted access to the current resource."
+    requirements="function signature: `function(resourceAccessData)`"
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        // update our custom text box with the reason information
+        accessGranted: function(resourceAccessData) {
+            var text = '';
+            switch (resourceAccessData.AccessReason) {
+              case 'Quota':
+                var used = resourceAccessData.Quota.HitCount,
+                    allowed = resourceAccessData.Quota.AllowedHits;
+                text = 'You have viewed ' + used + ' of your ' + allowed + ' pages.';
+                break;
+              case 'Subscription':
+                text = 'Your subscription expires on ' + resourceAccessData.ExpirationDate + '.';
+                break;
+              case 'Purchase':
+                text = 'You purchased unlimited access to this page.';
+                break;
+              case 'Free':
+                text = 'This page is available for free.'
+                break;
+              case 'PropertyUser':
+                text = 'You are an admin, manager, or guest of this property.'
+                break;
+            }
+            document.querySelector('#iMonezaAccess').textContent = text;
+        }
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="accessDenied" 
+    description="This function is called when the user is denied access to the current resource."
+    requirements="function signature: `function(resourceAccessData)`"
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        // Update a message with a friendly message.
+        accessDenied: function(resourceAccessData) {
+            var salutation = resourceAccessData.IsAnonymousUser ? 'friend' : resourceAccessData.FirstName;
+            var text = 'Hello ' + salutation + '! It looks like you don't have access to this page. ';
+                text += 'Never fear! We have some great subscription and purchase options available.';
+            document.querySelector('#friendlyUpsellIndication').textContent = text;
+        }
+    });
+    "
+%}
+
+{% include option-description.html 
     key="embeddedAdBlockerDetection" 
     description="An object that contains settings for the adblock detection service."
     default="The setting specified in Manage UI for this paywall."
     requirements="Please see the [embeddedAdBlockerDetection](#embeddedadblockerdetection-object) object below." 
 %}
 
+{% include option-description.html 
+    key="embeddedPaywall" 
+    description="An object that contains settings for the embedded paywall."
+    default="The setting specified in Manage UI for this paywall."
+    requirements="Please see the [embeddedPaywall](#embeddedpaywall-object) object below." 
+%}
+
+{% include option-description.html 
+    key="embeddedWallet" 
+    description="An object that contains settings for the embedded wallet."
+    default="The setting specified in Manage UI for this paywall."
+    requirements="Please see the [embeddedWallet](#embeddedwallet-object) object below." 
+%}
+
+{% include option-description.html 
+    key="embeddedConfirmation" 
+    description="An object that contains settings for the embedded success message."
+    default="The setting specified in Manage UI for this paywall."
+    requirements="Please see the [embeddedConfirmation](#embeddedconfirmation-object) object below." 
+%}
+
+{% include option-description.html 
+    key="modalFrame" 
+    description="An object that contains settings for the modal paywall display."
+    requirements="Please see the [modalFrame](#modalframe-object) object below." 
+%}
+
+{% include option-description.html 
+    key="modalPaywall" 
+    description="An object that contains settings for the modal paywall actions."
+    requirements="Please see the [modalPaywall](#modalpaywall-object) object below." 
+%}
+
+
+
+
 Below, you'll find the details for each key that contained an object for its configuration.
 
 #### `embeddedAdBlockerDetection` Object
 
 {% include option-description.html 
+    key="element" 
+    description="The CSS selector of an element to place the AdBlocker title and message."
+    default="The setting specified in the Manage UI for this paywall."
+    requirements="A valid CSS selector" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedAdBlockerDetection: {
+            element: '#customAdBlockerMessageBox'
+        }
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="zIndex" 
+    description="If you do not use the custom `element` property, use this to specify a different CSS zIndex for the element Wallit uses."
+    default="200100"
+    requirements="Integer" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedAdBlockerDetection: {
+            zIndex: 300
+        }
+    });
+    "
+%}
+
+{% include option-description.html 
     key="openWarning" 
-    description="When the Ad Blocker action is set to Show Warning, this function executes allowing you to customize the user experience."
-    default="@todo What"
+    description="When the Ad Blocker action is set to 'Show Warning', this function executes allowing you to customize the user experience.  Instead of the Wallit dialog box, you can control your own."
+    default="Wallit executes an internal function to bind the message to the `element` option."
     requirements="function signature: `function(title, message)`" 
     example="
     wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
@@ -168,6 +283,121 @@ Below, you'll find the details for each key that contained an object for its con
             openWarning: function(title, message) {
                 document.querySelector('#adblockerWarningTitle').textContent = title;
                 document.querySelector('#adblockerWarningFullMessage').textContent = message;
+            }
+        }
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="closeWarning" 
+    description="When using `openWarning`, this function is used to remove your custom data or close the dialog."
+    default="Wallit executes an internal function to remove the warning."
+    requirements="function signature: `function()`" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedAdBlockerDetection: {
+            closeWarning: function() {
+                document.querySelector('#adblockerWarningTitle').textContent = '';
+                document.querySelector('#adblockerWarningFullMessage').textContent = '';
+            }
+        }
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="openDialog" 
+    description="When the Ad Blocker action is set to 'Require Disable', this function executes allowing you to customize the user experience.  Instead of the Wallit dialog box, you can control your own."
+    default="Wallit executes an internal function to bind the message to the `element` option."
+    requirements="function signature: `function(title, message)`" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedAdBlockerDetection: {
+            openDialog: function(title, message) {
+                document.querySelector('#adblockerMessageTitle').textContent = title;
+                document.querySelector('#adblockerMessageFullMessage').textContent = message;
+            }
+        }
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="closeDialog" 
+    description="When using `openDialog`, this function is used to remove your custom data or close the dialog."
+    default="Wallit executes an internal function to remove the dialog."
+    requirements="function signature: `function()`" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedAdBlockerDetection: {
+            closeDialog: function(title, message) {
+                document.querySelector('#adblockerMessageTitle').textContent = '';
+                document.querySelector('#adblockerMessageFullMessage').textContent = '';
+            }
+        }
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="onWarningOpened" 
+    description="When the Ad Blocker action is set to Show Warning, this function executes after the warning has opened, assuming you haven't overridden `openWarning`"
+    requirements="function signature: `function(title, message)`" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedAdBlockerDetection: {
+            onWarningOpened: function(title, message) {
+                // send an event to Google Analytics (ga)
+                ga('send', 'event', 'Paywall', 'AdBlockerWarning', 'displayed');
+            }
+        }
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="onWarningClosed" 
+    description="When the Ad Blocker action is set to Show Warning, this function executes if the user closes the warning, assuming you haven't overridden `openWarning` or `closeWarning`"
+    requirements="function signature: `function()`" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedAdBlockerDetection: {
+            onWarningClosed: function() {
+                // send an event to Google Analytics (ga)
+                ga('send', 'event', 'Paywall', 'AdBlockerWarning', 'closed');
+            }
+        }
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="onDialogOpened" 
+    description="When the Ad Blocker action is set to 'Require Disable', this function executes after the dialog has opened, assuming you haven't overridden `openDialog`"
+    requirements="function signature: `function(title, message)`" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedAdBlockerDetection: {
+            onDialogOpened: function(title, message) {
+                // send an event to Google Analytics (ga)
+                ga('send', 'event', 'Paywall', 'AdBlockerWarning', 'displayed');
+            }
+        }
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="onDialogClosed" 
+    description="When the Ad Blocker action is set to 'Require Disable', this function executes if the user closes the dialog, assuming you haven't overridden `openDialog` or `closeDialog`"
+    requirements="function signature: `function()`" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedAdBlockerDetection: {
+            onWarningClosed: function() {
+                // send an event to Google Analytics (ga)
+                ga('send', 'event', 'Paywall', 'AdBlockerWarning', 'closed');
             }
         }
     });

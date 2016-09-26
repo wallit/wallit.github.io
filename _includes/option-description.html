@@ -27,12 +27,14 @@
                 </ul>
             </div>
             {% endif %}
+            {% if include.default %}
             <div class="col s12 {{ mediumSize }}">
                 <ul class="collection with-header">
                     <li class="collection-header"><h6>Default Value</h6></li>
                     <li class="collection-item">{{ include.default }}</li>
                 </ul>
             </div>
+            {% endif %}
         </div>
     </section>
     <section class="card-content example">
