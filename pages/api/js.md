@@ -198,6 +198,39 @@ The following section illustrates the options to the javascript configuration ob
 %}
 
 {% include option-description.html 
+    key="getOriginalURL" 
+    description="This function returns a full URL that points to this resource.  This is used when redirection occurs (to return a user to a resource after purchase)."
+    default="The current URL using `document.URL`"
+    requirements="function signature: `function()`"
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        // Update a message with a friendly message.
+        getOriginalURL: function() {
+            // return the URL, but make the page scroll to the success message ID/anchor
+            return document.URL + '#successMessage';
+        }
+    });
+    "
+%}
+
+** @todo part of embedded wallet pretty much **
+{% include option-description.html 
+    key="getAccessMessage" 
+    description="This function replaces the embedded wallet's logic to determine the text of the access method displayed near the lock element."
+    default="Built-in logic that uses the values of the `embeddedWallet` options."
+    requirements="function signature: `function(resourceAccessData)`"
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        // You do not want to update the embedded wallet with a message
+        getAccessMessage: function(resourceAccessData) {
+            return ''; // empty message
+        }
+    });
+    "
+%}
+** end @todo **
+
+{% include option-description.html 
     key="embeddedAdBlockerDetection" 
     description="An object that contains settings for the adblock detection service."
     default="The setting specified in Manage UI for this paywall."
@@ -403,3 +436,178 @@ Below, you'll find the details for each key that contained an object for its con
     });
     "
 %}
+
+#### `embeddedPaywall` Object
+
+{% include option-description.html 
+    key="element" 
+    description="A CSS selector that should contain the embedded paywall.  This is most likely the same place where the majority of your content resides."
+    default="The setting specified in the Manage UI for this paywall."
+    requirements="A valid CSS selector" 
+    example="
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedPaywall: {
+            // an article tag inside of an element with the ID of 'main'
+            element: '#main article' 
+        }
+    });
+    "
+%}
+
+{% include option-description.html 
+    key="cover" 
+    description="A configuration object that defines values for the fade/cover effect for the paywall."
+    requirements="Please see the [embeddedPaywall.cover](#embeddedpaywallcover-object) object below." 
+%}
+
+{% include option-description.html 
+    key="frame" 
+    description="A configuration object that defines values for the container display of the paywall."
+    requirements="Please see the [embeddedPaywall.frame](#embeddedpaywallframe-object) object below." 
+%}
+
+{% include option-description.html 
+    key="icon" 
+    description="A configuration object @todo"
+%}
+
+{% include option-description.html 
+    key="open" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function(url, isAdSupported, adSupportedTitle, adSupportedMessage)" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="updateHeight" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function(heightData)" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="onHeightUpdated" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function(heightData)" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="close" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function(url)" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="onOpened" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function()" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="onClosed" 
+    description="@todo"
+    default="@todo"
+    requirements="Function signature: function()" 
+    example="
+        @todo
+    "
+%}
+
+
+
+##### `embeddedPaywall.cover` Object
+
+{% include option-description.html 
+    key="backgroundColor" 
+    description="@todo"
+    default="@todo"
+    requirements="" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="visibleHeight" 
+    description="@todo"
+    default="@todo"
+    requirements="" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="visibleHeightMode" 
+    description="@todo"
+    default="@todo"
+    requirements="" 
+    example="
+        @todo
+    "
+%}
+
+{% include option-description.html 
+    key="zIndex" 
+    description="@todo"
+    default="@todo"
+    requirements="" 
+    example="
+        @todo
+    "
+%}
+
+##### `embeddedPaywall.frame` Object
+
+{% include option-description.html 
+    key="zIndex" 
+    description="@todo"
+    default="@todo"
+    requirements="" 
+    example="
+        @todo
+    "
+%}
+
+#### `embeddedWallet` Object
+
+@todo figure out documentation goal
+
+#### `embeddedConfirmation` Object
+
+ "element": "",
+    "zIndex": 0,
+    open: function (title, message) { },
+    close: function () { },
+    onOpened: function (title, message) { },
+    onClosed: function () { }
+
+#### `modalFrame` Object
+
+open: function (url) { },
+    updateHeight: function (heightData) { },
+    close: function () { },
+    "zIndex": 0
+
+#### `modalPaywall` Object
+
+open: function (url) { },
+    close: function () { }
