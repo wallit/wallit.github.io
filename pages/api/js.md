@@ -70,7 +70,7 @@ So, let's take a look at all the key/value pairs of this configuration object!
 
 The following section illustrates the options to the javascript configuration object for the second parameter of the `init()` method call.
 
-#### `init()` Top Level Object
+#### `init()` Method Object Properties
 
 {% include option-description.html 
     key="resourceKey" 
@@ -261,14 +261,6 @@ The following section illustrates the options to the javascript configuration ob
     description="An object that contains settings for the modal paywall display."
     requirements="Please see the [modalFrame](#modalframe-object) object below." 
 %}
-
-{% include option-description.html 
-    key="modalPaywall" 
-    description="An object that contains settings for the modal paywall actions."
-    requirements="Please see the [modalPaywall](#modalpaywall-object) object below." 
-%}
-
-
 
 
 Below, you'll find the details for each key that contained an object for its configuration.
@@ -466,87 +458,131 @@ Below, you'll find the details for each key that contained an object for its con
 
 {% include option-description.html 
     key="onOpened" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function(url, isAdSupported, adSupportedTitle, adSupportedMessage)" 
+    description="This function is executed after the embedded paywall has opened on the page."
+    requirements="function signature: `function(url, isAdSupported, adSupportedTitle, adSupportedMessage)`" 
     example="
-        @todo
-    "
-%}
-
-{% include option-description.html 
-    key="onClosed" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function()" 
-    example="
-        @todo
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedPaywall: {
+            /**
+             * @param {string} url The URL the embedded paywall is opening in the iFrame
+             * @param {boolean} isAdSupported @todo
+             * @param {string} adSupportedTitle @todo
+             * @param {string} adSupportedMessage @todo
+             */
+            onOpened: function(url, isAdSupported, adSupportedTitle, adSupportedMessage) {
+                // @todo
+            }
+        }
+    });
     "
 %}
 
 {% include option-description.html 
     key="onHeightUpdated" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function(heightData)" 
+    description="This function executes when the iFrame adjusts its height based on the content loaded inside of it.  You may want to use this callback if your page design is not responding properly to these size changes."
+    requirements="function signature: `function(heightData)`" 
     example="
-        @todo
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedPaywall: {
+            /**
+             * @param {object} heightData An object that contains height measurements of the current iframe's box model
+            onHeightUpdated: function(heightData) {
+                console.log('clientHeight', heightData.clientHeight);
+                console.log('offsetHeight', heightData.offsetHeight);
+                console.log('scrollHeight', heightData.scrollHeight);
+            }
+        }
+    });
     "
 %}
-
-
 
 ##### `embeddedPaywall.cover` Object
 
 {% include option-description.html 
     key="backgroundColor" 
-    description="@todo"
-    default="@todo"
-    requirements="" 
+    description="The base hex HTML color of the element that covers up the protected content."
+    default="The Background Color setting in the Manage UI for this paywall."
+    requirements="valid HTML hex color including #" 
     example="
-        @todo
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedPaywall: {
+            cover: {
+                backgroundColor: '#336699'
+            }
+        }
+    });
     "
 %}
 
 {% include option-description.html 
     key="visibleHeight" 
-    description="@todo"
-    default="@todo"
-    requirements="" 
+    description="This indicates how much of the visible content will be displayed.  Basically, after this value, the embedded paywall begins.
+                 Keep in mind, though, that the cover will fade this content, but it will still be visible to some extent.
+                 This number represents pixels or percent, depending on the setting of `embeddedPaywall.cover.visibleHeightMode` 
+    "
+    default="The Visible Height value in the Manage UI for this paywall."
+    requirements="positive integer if indicating pixels;;positive float if indicating percent" 
     example="
-        @todo
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedPaywall: {
+            cover: {
+                visibleHeight: 300,
+                visibleHeightMode: 'Pixels'
+            }
+        }
+    });
     "
 %}
 
 {% include option-description.html 
     key="visibleHeightMode" 
-    description="@todo"
-    default="@todo"
-    requirements="" 
+    description="This is the unit of the `embeddedPaywall.cover.visibleHeightMode` value."
+    default="The Visible Height Mode value in the Manage UI for this paywall."
+    requirements="Must be exactly one of the two available values."
+    enum="Pixels;;Percent"
     example="
-        @todo
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedPaywall: {
+            cover: {
+                visibleHeight: 21.5,
+                visibleHeightMode: 'Percent'
+            }
+        }
+    });
     "
 %}
 
 {% include option-description.html 
     key="zIndex" 
-    description="@todo"
-    default="@todo"
-    requirements="" 
+    description="This is the CSS z-index value that is applied to the content covering object."
+    default="The Z-Index value under the Cover section in the Manage UI for this paywall."
+    requirements="Integer" 
     example="
-        @todo
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedPaywall: {
+            cover: {
+                zIndex: 300000
+            }
+        }
+    });
     "
 %}
 
 ##### `embeddedPaywall.frame` Object
 
 {% include option-description.html 
-    key="zIndex" 
-    description="@todo"
-    default="@todo"
-    requirements="" 
+    key="zIndex"
+    description="This is the CSS z-index value that is applied to the embedded paywall's iframe wrapper." 
+    default="The Z-Index value under the Frame section in the Manage UI for this paywall."
+    requirements="Integer" 
     example="
-        @todo
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedPaywall: {
+            frame: {
+                zIndex: 300001
+            }
+        }
+    });
     "
 %}
 
@@ -558,61 +594,61 @@ Below, you'll find the details for each key that contained an object for its con
 
 {% include option-description.html 
     key="element" 
-    description="@todo"
-    default="@todo"
-    requirements="" 
+    description="The CSS selector of an element to place the confirmation or success title and message.  This is used when a visitor has been granted access to a resource after previously seeing a paywall."
+    default="The element specified in the Embedded Confirmation section of the Manage UI for this paywall."
+    requirements="A valid CSS selector" 
     example="
-        @todo
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedConfirmation: {
+            element: '#successMessage'
+        }
+    });
     "
 %}
 
 {% include option-description.html 
-    key="zIndex" 
-    description="@todo"
-    default="@todo"
-    requirements="" 
+    key="zIndex"
+    description="This is the CSS z-index value that is applied to the embedded confirmation object.  If you have control of your own CSS for your `embeddedConfirmation.element` object, you may not need to use this." 
+    default="The Z-Index field value in the Embedded Confirmation section of Manage UI for this paywall."
+    requirements="Integer" 
     example="
-        @todo
-    "
-%}
-
-{% include option-description.html 
-    key="open" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function(title, message)" 
-    example="
-        @todo
-    "
-%}
-
-{% include option-description.html 
-    key="close" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function()" 
-    example="
-        @todo
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedConfirmation: {
+            zIndex: 400
+        }
+    });
     "
 %}
 
 {% include option-description.html 
     key="onOpened" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function(title, message)" 
+    description="This function is called after the embedded confirmation has been displayed to the user, assuming a valid selector is used for the element."
+    requirements="function signature: `function(title, message)`" 
     example="
-        @todo
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedConfirmation: {
+            onOpened: function(title, message) {
+                // perhaps send an event to your Google Analytics
+                ga('send', 'event', 'Paywall', 'Purchase', 'completed');
+            }
+        }
+    });
     "
 %}
 
 {% include option-description.html 
     key="onClosed" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function()" 
+    description="This function is called after the embedded confirmation has been closed, assuming a valid selector is used for the element."
+    requirements="function signature: `function()`" 
     example="
-        @todo
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        embeddedConfirmation: {
+            onClosed: function() {
+                // perhaps scroll the user to the beginning of the content
+                window.location.href = '#begin-reading';
+            }
+        }
+    });
     "
 %}
 
@@ -620,63 +656,86 @@ Below, you'll find the details for each key that contained an object for its con
 
 {% include option-description.html 
     key="zIndex" 
-    description="@todo"
-    default="@todo"
-    requirements="" 
+    description="This is the CSS z-index value that is applied to the modal paywall's wrapper."
+    default="The Z-Index field of the Modal Placement section of the Manage UI for this paywall."
+    requirements="Integer" 
     example="
-        @todo
+    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+        modalFrame: {
+            zIndex: 300001
+        }
+    });
     "
 %}
+
+## Javascript Library User Log out
+
+The `logOut()` method will log out the current user. During this process, a redirect will be issued in the browser to finish the log out procedure.
+After this, the user will be redirected back to the page that the `logOut()` method was called.
+
+### `logOut()` Top Level Method Signature
 
 {% include option-description.html 
-    key="open" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function(url)" 
+    key="logOut" 
+    description="This method logs the user out of Wallit."
+    requirements="function signature: `function(url)`" 
     example="
-        @todo
+    /**
+     * @param {string} url The URL to redirect the user to after log out, otherwise current page.
+     */
+    wallit.paywall.logOut('https://my.site/logged-out-of-wallit.html');
     "
 %}
 
-{% include option-description.html 
-    key="close" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function()" 
-    example="
-        @todo
-    "
-%}
+## Frequently Asked Questions / Scenarios
 
-{% include option-description.html 
-    key="updateHeight" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function(heightData)" 
-    example="
-        @todo
-    "
-%}
+This section features examples based on some of the Frequently Asked Questions when integrating the Javascript Library.
 
-#### `modalPaywall` Object
+### My Site Uses Pagination For Long Articles
 
-{% include option-description.html 
-    key="open" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function(url)" 
-    example="
-        @todo
-    "
-%}
+Perhaps your site uses pagination for long articles.  You do not want to create separate resources for each page.  Instead,
+you can override the resourceKey on each page to be the shared one.
 
-{% include option-description.html 
-    key="close" 
-    description="@todo"
-    default="@todo"
-    requirements="Function signature: function()" 
-    example="
-        @todo
-    "
-%}
- 
+Imagine you have the following pages:
+
+* https://my.site/news/long-article/page1
+* https://my.site/news/long-article/page2
+* https://my.site/news/long-article/page3
+
+You'll want to make a `resourceKey` of just the main part of the URL.
+
+```javascript
+wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+    resourceKey: '/news/long-article'
+});
+```
+
+You can also create a function that returns a string.  Imagine the format is the same as above, where the pagination is
+the last section of the string.
+
+```javascript
+wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+    resourceKey: function() {
+        var urlParts = window.location.pathname.split('/');
+        urlParts.pop();
+        var newUrl = urlParts.join('/');
+        return newUrl.substr(newUrl.length - 50);
+    }
+});
+```
+
+### I Need to Replace My Content on Access Granted With the Full Content
+
+If you're using a system where your site sends a preview of the content to the browser, but not the entire thing, you
+will need to load the entire content using an AJAX request.  In this case, we're using jQuery to save some time with the
+ajax requests.  The `article` HTML element holds our content to be replaced.
+
+```javascript
+wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+    accessGranted: function(data) {
+        $.get('/ajax/load-article?id=12345', function(data) {
+            $('article').html(data);
+        });
+    }
+});
+```

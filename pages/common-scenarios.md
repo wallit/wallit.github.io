@@ -238,7 +238,7 @@ Next, let's take a look at our HTML based PHP view.
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://cdn.wallit.io/paywall.min.js"></script>
     <script type="text/javascript">
-        Wallit.paywall.init('<?= $view->externalKey ?>', {
+        wallit.paywall.init('<?= $view->externalKey ?>', {
             accessGranted: function(data) {
                 $.get('/ajax/load-article?id=<?= $view->externalKey ?>', function(data) {
                     $('article').html(data);
