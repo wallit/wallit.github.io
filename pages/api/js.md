@@ -148,7 +148,7 @@ The following section illustrates the options to the javascript configuration ob
 
 {% include option-description.html 
     key="accessGranted" 
-    description="This function is called when the user is granted access to the current resource."
+    description="This function is called when the user is granted access to the current resource.  See the [resourceAccessData object](#resourceaccessdata-object) for details about the incoming object properties."
     requirements="function signature: `function(resourceAccessData)`"
     example="
     wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
@@ -182,7 +182,7 @@ The following section illustrates the options to the javascript configuration ob
 
 {% include option-description.html 
     key="accessDenied" 
-    description="This function is called when the user is denied access to the current resource."
+    description="This function is called when the user is denied access to the current resource.  See the [resourceAccessData object](#resourceaccessdata-object) for details about the incoming object properties."
     requirements="function signature: `function(resourceAccessData)`"
     example="
     wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
@@ -239,7 +239,6 @@ The following section illustrates the options to the javascript configuration ob
     description="An object that contains settings for the modal paywall display."
     requirements="Please see the [modalFrame](#modalframe-object) object below." 
 %}
-
 
 Below, you'll find the details for each key that contained an object for its configuration.
 
@@ -642,12 +641,82 @@ Below, you'll find the details for each key that contained an object for its con
     "
 %}
 
+#### `resourceAccessData` Object
+
+This object contains the information about the grant or deny request as it pertains to this resource and this user.  This is an incoming parameter to some functions above.
+
+| Key Name | Type | Description |
+| -------- | ---- | ----------- |
+| `UserToken` | String | Used internally by Wallit. |
+| `PropertyName` | String | The internal name of merchant Property. |
+| `ResourceName` | String | The internal name of this resource. |
+| `FirstName` | String | If authenticated, the user's first name |
+| `IsAnonymousUser` | Boolean | Whether the current user is anonymous (true) or authenticated (false). |
+| `WalletBalance` | Decimal (USD) | Current user's account balance. |
+| `PictureURL` | String | If user signed in with social media link, the URL to their profile picture. |
+| `Quota` | Object | Meter details, [see object below](#resourceaccessdataquota-object). |
+| `Subscription` | Object | Subscription details, [see object below](#resourceaccessdatasubscription-object). |
+| `Purchase` | Object | Purchase details, [see object below](#resourceaccessdatapurchase-object).  |
+| `AccessReason` | String | A value that indicates the reason why the user has access. [See possible values and descriptions](#resourceaccessdataaccessreason-values). |
+| `AccessActionURL` | String | The URL that the iframe or paywall is loading. |
+| `AdBlockerStatus` | String | Indicates what Wallit has determined about any potential ad-blockers on this page.  [See possible values and descriptions](#resourceaccessdataadblockerstatus-values) |
+| `IsNoCost` | Boolean | A true value means that no payment is required (pricing model could be free, price could be $0.00, or content is ad-supported). | 
+| `IsAdSupported` | Boolean | A true value means that this resource is Ad Supported. |
+| `AdSupportedMessageTitle` | String | The message title that is meant to be displayed if this ad-supported content detects ads are being blocked. |
+| `AdSupportedMessage` | String | The message title that is meant to be displayed if this ad-supported content detects ads are being blocked. |
+
+##### `resourceAccessData.Quota` Object
+
+This object contains information about the current meter or quota of views.
+
+| Key Name | Type | Description |
+| -------- | ---- | ----------- | 
+| `IsEnabled` | Boolean | The property wide setting of whether metering is enabled or not. |
+| `HitCount` | Integer | The number of quota-enabled resources this specific user has visited. | 
+| `AllowedHits` | Integer | The maximum number of free quota-enabled resources per user, per period. |
+| `PeriodStartDate` | String Datetime ISO 8601 | The beginning of the period for this quota or meter. |
+| `IsMet` | Boolean | Will be true when the quota is met. |
+
+##### `resourceAccessData.Subscription` Object
+
+This object represents a current subscription that may be applicable to access to this resource.  Even if the subscription
+is expired, but previously would have allowed access, it will be defined here.
+
+| Key Name | Type | Description |
+| -------- | ---- | ----------- |
+| `IsExpired` | Boolean | This indicates whether the current subscription access is expired or not. |
+| `ExpirationDate` | String Datetime ISO 8601 | End date of current subscription. |
+| `IsCurrent` | Boolean | Whether the current subscription is valid or not, if so, resource access is granted. |
+| `SubscriptionGroupID` | GUID | The unique identifier of this subscription. |
+
+##### `resourceAccessData.Purchase` Object
+
+This object contains the details about the current purchase of this content, if applicable.
+
+@todo details coming soon.
+
+##### `resourceAccessData.AccessReason` Values
+
+| Value | Description |
+| ----- | ----------- |
+| `Deny` | Access not granted. |
+| `Quota` | Access granted, quota not reached. |
+| `Subscription` | Access granted, valid subscription. |
+| `Purchase` | Access granted due to the completion of a purchase. |
+| `Free` | Access granted for free resource. |
+| `PropertyUser` | Access granted when an authenticated user's role is Property Guest. |
+| `AdSupported` | Access granted by ad-supported resource with no ad-blocker detected. |
+
+##### `resourceAccessData.AdBlockerStatus` Values
+
+@todo details coming soon.
+
 ## Javascript Library User Log out
 
 The `logOut()` method will log out the current user. During this process, a redirect will be issued in the browser to finish the log out procedure.
 After this, the user will be redirected back to the page that the `logOut()` method was called.
 
-### `logOut()` Top Level Method Signature
+#### `logOut()` Top Level Method Signature
 
 {% include option-description.html 
     key="logOut" 
