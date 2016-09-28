@@ -214,21 +214,6 @@ The following section illustrates the options to the javascript configuration ob
 %}
 
 {% include option-description.html 
-    key="getAccessMessage" 
-    description="This function replaces the embedded wallet's logic to determine the text of the access method displayed near the lock element.  See [embeddedWallet](#embeddedWallet-object) for other customization options."
-    default="Built-in logic that uses the values of the `embeddedWallet` options."
-    requirements="function signature: `function(resourceAccessData)`"
-    example="
-    wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
-        // You do not want to update the embedded wallet with a message
-        getAccessMessage: function(resourceAccessData) {
-            return ''; // empty message
-        }
-    });
-    "
-%}
-
-{% include option-description.html 
     key="embeddedAdBlockerDetection" 
     description="An object that contains settings for the adblock detection service."
     default="The setting specified in Manage UI for this paywall."
@@ -240,13 +225,6 @@ The following section illustrates the options to the javascript configuration ob
     description="An object that contains settings for the embedded paywall."
     default="The setting specified in Manage UI for this paywall."
     requirements="Please see the [embeddedPaywall](#embeddedpaywall-object) object below." 
-%}
-
-{% include option-description.html 
-    key="embeddedWallet" 
-    description="An object that contains settings for the embedded wallet."
-    default="The setting specified in Manage UI for this paywall."
-    requirements="Please see the [embeddedWallet](#embeddedwallet-object) object below." 
 %}
 
 {% include option-description.html 
@@ -585,10 +563,6 @@ Below, you'll find the details for each key that contained an object for its con
     });
     "
 %}
-
-#### `embeddedWallet` Object
-
-@todo figure out documentation goal
 
 #### `embeddedConfirmation` Object
 
