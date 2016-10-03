@@ -7,4 +7,6 @@ $(function() {
         $('section', $box).hide();
         $($a.data('panel'), $box).show();
     });
+
+    $(".button-collapse").sideNav();
 });

@@ -4,6 +4,13 @@
 @import "custom-flow-text";
 @import "syntax-highlighting";
 
+.side-nav ul {
+  margin-left: 10px;
+}
+.nav-wrapper.secondary {
+  padding-left: 14px;
+}
+
 strong {
   font-weight: 900;
 }
@@ -14,7 +21,7 @@ a.btn {
 
 nav img {
   height: 64px;
-  padding: 10px;
+  padding: 14px;
 }
 
 tr {

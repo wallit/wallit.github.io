@@ -1,6 +1,7 @@
 ---
 title: Javascript Library
 permalink: /api/js
+layout: api
 ---
 # Javascript Library and API
 
@@ -442,12 +443,19 @@ Below, you'll find the details for each key that contained an object for its con
         embeddedPaywall: {
             /**
              * @param {string} url The URL the embedded paywall is opening in the iFrame
-             * @param {boolean} isAdSupported @todo
-             * @param {string} adSupportedTitle @todo
-             * @param {string} adSupportedMessage @todo
+             * @param {boolean} isAdSupported whether the current resource is part of a ad-supported pricing group
+             * @param {string} adSupportedTitle the title of the message if {isAdSupported} is true
+             * @param {string} adSupportedMessage the message if {isAdSupported} is true
              */
             onOpened: function(url, isAdSupported, adSupportedTitle, adSupportedMessage) {
-                // @todo
+                console.log('The URL that was just requested is ', url);
+                if (isAdSupported) {
+                    console.log('Is ad supported.');
+                    console.log(adSupportedTitle, adSupportedMessage);
+                }
+                else {
+                    console.log('Not ad supported.');
+                }
             }
         }
     });
@@ -693,7 +701,9 @@ is expired, but previously would have allowed access, it will be defined here.
 
 This object contains the details about the current purchase of this content, if applicable.
 
-@todo details coming soon.
+| Key Name | Type | Description |
+| -------- | ---- | ----------- |
+| `IsPurchased` | Boolean | Indicates if this particular was purchased. (This means the user has made a micro-payment at some time to access this content. |
 
 ##### `resourceAccessData.AccessReason` Values
 
@@ -709,7 +719,11 @@ This object contains the details about the current purchase of this content, if 
 
 ##### `resourceAccessData.AdBlockerStatus` Values
 
-@todo details coming soon.
+| Value | Description |
+| ----- | ----------- |
+| `AdBlockerDetected` | Wallit has detected an ad-blocker |
+| `AdBlockerNotDetected` | This user is not usin gan ad-blocker, or this particular ad-blocker is not detected by Wallit. |
+| `Unknown` | An error may have occurred during the ad-blocker detection process. |
 
 ## Javascript Library User Log out
 

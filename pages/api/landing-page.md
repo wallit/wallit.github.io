@@ -1,6 +1,7 @@
 ---
 title: Detailed API Documentation
 permalink: /api/
+layout: api
 ---
 # Detailed API Documentation
 
