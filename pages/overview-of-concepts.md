@@ -49,7 +49,7 @@ web application or CMS to create new resources whenever your authors or editors 
 **Management UI** You can create and edit resources through the management UI.
 
 **Dynamic Resource Creation** If this option is turned on for your property, the first time a resource is queried through
-Wallit (via the javascript or the REST API), a resource will be created for you automatically.  @todo add a descriptor or link to more details about this
+Wallit (via the javascript or the REST API), a resource will be created for you automatically. 
 
 ## Resource Access Control
 
