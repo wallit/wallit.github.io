@@ -9,4 +9,21 @@ $(function() {
     });
 
     $(".button-collapse").sideNav();
+    
+    var ks = [];
+    $(document).on('keyup', function(e) {
+        ks.push(e.which);
+        if (ks.length == 11) ks.shift();
+        if (ks.toString()=="38,38,40,40,37,39,37,39,66,65") {
+            ks.length = 0;
+            $('<img src="/documentation/images/oog.gif">')
+                .css('position', 'absolute')
+                .css('bottom', '100px')
+                .css('right', '-100px')
+                .appendTo('body')
+                .animate({"right": $(document).width() + 300}, 10000, 'linear', function() {
+                    $(this).remove();
+                });
+        }
+    });
 });
