@@ -1,0 +1,843 @@
+swagger: "2.0"
+consumes:
+  - application/json
+  - application/xml
+produces:
+  - application/json
+  - application/xml
+paths:
+  /api/Property/{propertyID}:
+    get:
+      summary: Returns property information including access information and subscription & pricing groups.
+      parameters:
+        - name: propertyID
+          in: path
+          description: The Property ID for this request.
+          required: true
+      responses:
+        200:
+          description: A property object
+          examples:
+            application/json: >
+              {
+                "Name": "WordPress Plugin Sandbox",
+                "Title": "WordPress Plugin Sandbox",
+                "DynamicallyCreateResources": false,
+                "EnableQuota": true,
+                "EnableSubscriptions": true,
+                "EnableSinglePurchases": true,
+                "FreeResourcesRequireAuthentication": false,
+                "Quota": 2,
+                "QuotaPeriod": "Monthly",
+                "SubscriptionGroups": [
+                  {
+                   "SubscriptionGroupID": "57f294fb-9e4e-4d54-bd9c-514d0165650a",
+                   "Name": "Premium",
+                   "Title": "Premium Subscription",
+                   "Price": 10.00,
+                   "Period": "Monthly",
+                   "PaywallDescription": "",
+                   "PaywallShortDescription": ""
+                  },
+                  {
+                   "SubscriptionGroupID": "e3786c3e-f733-4777-a34f-d89fb48085e5",
+                   "Name": "Default",
+                   "Title": "Subscription",
+                   "Price": 5.00,
+                   "Period": "Monthly"
+                   "PaywallDescription": "",
+                   "PaywallShortDescription": ""
+                  }
+                ],
+                "PricingGroups": [
+                  {
+                    "PricingGroupID": "a0dbe1be-eef9-4f2e-a10f-5a4c35ac2caa",
+                    "Name": "Pay What You Want",
+                    "IsDefault": false,
+                    "PricingModel": "VariablePrice",
+                    "Price": 0.00,
+                    "ExpirationPeriodUnit": "Never",
+                    "ExpirationPeriodValue": 0,
+                    "TargetConversionRate": 0.00,
+                    "TargetConversionPriceFloor": 0.00,
+                    "TargetConversionHitsPerRecalculationPeriod": 0
+                  },
+                  {
+                    "PricingGroupID": "ea45a17f-b4b3-474f-8871-b769bdfbebaf",
+                    "Name": "Premium",
+                    "IsDefault": false,
+                    "PricingModel": "FixedPrice",
+                    "Price": 1.00,
+                    "ExpirationPeriodUnit": "Never",
+                    "ExpirationPeriodValue": 0,
+                    "TargetConversionRate": 0.00,
+                    "TargetConversionPriceFloor": 0.00,
+                    "TargetConversionHitsPerRecalculationPeriod": 0
+                  },
+                  {
+                    "PricingGroupID": "d0cb0c67-743f-41e7-bd90-dc3991743f90",
+                    "Name": "Default",
+                    "IsDefault": true,
+                    "PricingModel": "FixedPrice",
+                    "Price": 0.50,
+                    "ExpirationPeriodUnit": "Never",
+                    "ExpirationPeriodValue": 0,
+                    "TargetConversionRate": 0.00,
+                    "TargetConversionPriceFloor": 0.00,
+                    "TargetConversionHitsPerRecalculationPeriod": 0
+                  },
+                  {
+                    "PricingGroupID": "f3a10c67-28b4-41e7-bd90-dc3991746cd4",
+                    "Name": "Features",
+                    "IsDefault": true,
+                    "PricingModel": "TargetConversion",
+                    "Price": 0.50,
+                    "ExpirationPeriodUnit": "Never",
+                    "ExpirationPeriodValue": 0,
+                    "TargetConversionRate": 0.20,
+                    "TargetConversionPriceFloor": 0.05,
+                    "TargetConversionHitsPerRecalculationPeriod": 100
+                  }
+                ]
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{propertyID}/Resource:
+    get:
+      summary: Returns all the resources belonging to a property.
+      parameters:
+        - name: propertyID
+          in: path
+          description: The Property ID for this request.
+          required: true
+      responses:
+        200:
+          description: An array of resource objects
+          examples:
+            application/json: >
+              [
+                {
+                  "Name": "Third Post",
+                  "ExternalKey": "13",
+                  "Active": true,
+                  "URL": "http://localhost:64653/?p=13",
+                  "Title": "Third Post",
+                  "Byline": "",
+                  "Description": "",
+                  "PublicationDate": "2014-07-07T16:08:30",
+                  "PricingGroup": {
+                    "PricingGroupID": "a0dbe1be-eef9-4f2e-a10f-5a4c35ac2caa",
+                    "Name": "Pay What You Want",
+                    "IsDefault": false,
+                    "PricingModel": "VariablePrice",
+                    "Price": 0.00,
+                    "ExpirationPeriodUnit": "Never",
+                    "ExpirationPeriodValue": 0
+                  },
+                  "PricingModel": "Inherit",
+                  "Price": 0.00,
+                  "ExpirationPeriodUnit": "Never",
+                  "ExpirationPeriodValue": 0,
+                  "TargetConversionRate": 0.00,
+                  "TargetConversionPriceFloor": 0.00,
+                  "TargetConversionHitsPerRecalculationPeriod": 0,
+                  "PaywallDescription": "",
+                  "PaywallShortDescription": "",
+                  "Property": null
+                },
+                {
+                  "Name": "Hello, world.",
+                  "ExternalKey": "1",
+                  "Active": true,
+                  "URL": "http://localhost:64653/?p=1",
+                  "Title": "Hello, world.",
+                  "Byline": "by Chris Wilson",
+                  "Description": "",
+                  "PublicationDate": "2014-06-13T09:35:07",
+                  "PricingGroup": {
+                    "PricingGroupID": "d0cb0c67-743f-41e7-bd90-dc3991743f90",
+                    "Name": "Default",
+                    "IsDefault": true,
+                    "PricingModel": "FixedPrice",
+                    "Price": 0.50,
+                    "ExpirationPeriodUnit": "Never",
+                    "ExpirationPeriodValue": 0
+                  },
+                  "PricingModel": "Inherit",
+                  "Price": 0.00,
+                  "ExpirationPeriodUnit": "Never",
+                  "ExpirationPeriodValue": 0,
+                  "TargetConversionRate": 0.00,
+                  "TargetConversionPriceFloor": 0.00,
+                  "TargetConversionHitsPerRecalculationPeriod": 0,
+                  "PaywallDescription": "",
+                  "PaywallShortDescription": "",
+                  "Property": null
+                }
+              ]
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{propertyID}/Resource/{externalKey}:
+    get:
+      summary: Returns all the resources belonging to a property.
+      parameters:
+        - name: propertyID
+          in: path
+          description: The Property ID for this request.
+          required: true
+        - name: externalKey
+          in: path
+          description: The external key or public identifier of a resource.
+          required: true
+        - name: includePropertyData
+          in: query
+          description: If set to true, the settings for the property will also be returned.
+          required: false
+      responses:
+        200:
+          description: A resource object (with includePropertyData false)
+          examples:
+            application/json: >
+              {
+                "Name": "Hello, world.",
+                "ExternalKey": "1",
+                "Active": true,
+                "URL": "http://localhost:64653/?p=1",
+                "Title": "Hello, world.",
+                "Byline": "by Chris Wilson",
+                "Description": "",
+                "PublicationDate": "2014-06-13T09:35:07",
+                "PricingGroup": {
+                  "PricingGroupID": "d0cb0c67-743f-41e7-bd90-dc3991743f90",
+                  "Name": "Default",
+                  "IsDefault": true,
+                  "PricingModel": "FixedPrice",
+                  "Price": 0.50,
+                  "ExpirationPeriodUnit": "Never",
+                  "ExpirationPeriodValue": 0
+                },
+                "PricingModel": "Inherit",
+                "Price": 0.00,
+                "ExpirationPeriodUnit": "Never",
+                "ExpirationPeriodValue": 0,
+                "TargetConversionRate": 0.00,
+                "TargetConversionPriceFloor": 0.00,
+                "TargetConversionHitsPerRecalculationPeriod": 0,
+                "PaywallDescription": "",
+                "PaywallShortDescription": "",
+                "Property": null
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{propertyID}/Resource/{externalKey}:
+    put:
+      summary: Creates/Updates a resource, identified by an external key.
+      parameters:
+        - name: propertyID
+          in: path
+          description: The Property ID for this request.
+          required: true
+        - name: externalKey
+          in: path
+          description: The external key or public identifier of a resource.
+          type: "string"
+          maxLength: 50
+          required: true
+        - name: ExternalKey
+          in: formData
+          description: The external key or public identifier of a resource.
+          required: true
+          type: "string"
+          maxLength: 50
+        - name: Name
+          in: formData
+          description: The internal name of the resource (required only on creation)
+          type: "string"
+          maxLength: 50
+          required: false
+          required: true
+        - name: Active
+          in: formData
+          description: Boolean of whether this item is active
+          type: "boolean"
+          required: false
+        - name: URL
+          in: formData
+          description: The URL of the resource
+          type: "string"
+          maxLength: 1000
+          required: false
+        - name: Title
+          in: formData
+          description: The title of the resource
+          type: "string"
+          maxLength: 200
+          required: false
+        - name: Byline
+          in: formData
+          description: Who authored the resource
+          type: "string"
+          maxLength: 200
+          required: false
+        - name: Description
+          in: formData
+          description: Description of the resource that appears if the paywall type is set to "Modal"
+          type: "string"
+          maxLength: 2000
+          required: false
+        - name: PublicationDate
+          in: formData
+          description: The publication date of the resource
+          type: "string"
+          required: false
+        - name: PricingGroup
+          in: formData
+          description: Update or set the pricing group for the resource (required only on creation) (see special formatting notes below)
+          type: "string"
+          required: true
+        - name: PricingModel
+          in: formData
+          description: The resource pricing model
+          enum: ["Inherit", "Free", "AuthenticationRequired", "FixedPrice", "VariablePrice", "TimeTiered", "ViewTiered", "SubscriptionOnly", "TargetConversion"]
+          required: false
+        - name: Price
+          in: formData
+          description: The price of the resource
+          type: "number"
+          required: false
+        - name: ExpirationPeriodUnit
+          in: formData
+          description: Expiration Period Unit
+          enum: ["Never", "Years", "Months", "Weeks", "Days"]
+          required: false
+        - name: ExpirationPeriodValue
+          in: formData
+          description: Expiration Period Value
+          required: false
+        - name: TargetConversionRate
+          in: formData
+          description: Target Conversion Rate
+          required: false
+        - name: TargetConversionPriceFloor
+          in: formData
+          description: Target Conversion Price Floor
+          required: false
+        - name: TargetConversionHitsPerRecalculationPeriod
+          in: formData
+          description: Target Conversion Hits Per Recalculation Period
+          required: false
+        - name: PaywallDescription
+          in: formData
+          description: The description of the resource that will appear on the Purchase Options step on the paywall
+          type: "string"
+          required: false
+        - name: PaywallShortDescription
+          in: formData
+          description: The short description of the resource that will appear at the top of paywall after the Purchase Options step
+          type: "string"
+          maxLength: 100
+          required: false
+      responses:
+        200:
+          description: Successful creation or updating of the item.
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{apiKey}/ExternalSubscriber/{subscriberKey}:
+    put:
+      summary: Adds or updates a single external subscriber.
+      parameters:
+        - name: apiKey
+          in: path
+          description: The api key for this request.
+          required: true
+        - name: subscriberKey
+          in: path
+          description: The subscriber key
+          required: true
+        - name: SubscriberKey
+          in: formData
+          description: The subscriber key
+          required: true
+        - name: MaximumLinkedUsers
+          in: formData
+          description: Maximum Linked Users
+          required: false
+        - name: ValidationFields
+          in: formData
+          description: Array of objects with two properties - `Name` relates to the name of the field data and `Value` relates to the value of said data.
+          required: false
+        - name: EligibleSubscriptions
+          in: formData
+          description: An array of objects with two properties - `SubscriptionGroupKey` is the subscription group key and `EligibilityEndDate` is when eligibility to this subscription ends.
+          required: false
+        - name: AutomaticSubscriptions
+          in: formData
+          description: An array of objects with two properties - `SubscriptionGroupKey` is the subscription group key and `ExpirationDate` is the end of the subscription.
+          required: false
+      responses:
+        200:
+          description: A subscriber element containing only the demographic fields
+          examples:
+            application/json: >
+              {
+                "SubscriberKey": "ABC-123",
+                "MaximumLinkedUsers": 5,
+                "ValidationFields": [
+                  {
+                    "Name": "PrintSubscriptionNumber",
+                    "Value": "12345678"
+                  },
+                  {
+                    "Name": "ZipCode",
+                    "Value": "53211"
+                  }
+                ],
+                "EligibleSubscriptions": [
+                  {
+                    "SubscriptionGroupKey": "Digital-All-Access",
+                    "EligibilityEndDate": "2015-11-16T13:30:00Z"
+                  }
+                ],
+                "AutomaticSubscriptions": [
+                  {
+                    "SubscriptionGroupKey": "Digital-Basic",
+                    "ExpirationDate": "2015-11-09T19:00:00Z"
+                  }
+                ]
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{apiKey}/ExternalSubscriber/{subscriberKey}/LinkedUser:
+    get:
+      summary: Retrieves a single external subscriber and linked iMoneza users.
+      parameters:
+        - name: apiKey
+          in: path
+          description: The Property ID for this request.
+          required: true
+        - name: subscriberKey
+          in: path
+          description: The subscriber key
+          required: true
+      responses:
+        200:
+          description: A subscriber element
+          examples:
+            application/json: >
+              {
+                "SubscriberKey": "ABC-123",
+                "Users": [
+                  {
+                    "ApplicationUserID": "43f4c9e1-00fe-4520-8311-929c5351a637",
+                    "DemographicFields": [
+                      {
+                        "Name": "EmailAddress",
+                        "Value": "john.doe@fake.com"
+                      },
+                      {
+                        "Name": "PhoneNumber",
+                        "Value": "555-555-5555"
+                      }
+                    ],
+                    "Subscriptions": [
+                      {
+                        "SubscriptionKey": "Digital-All-Access",
+                        "ExpirationDate": "2016-01-09T16:27:11.77"
+                      }
+                    ]
+                  }
+                ]
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{apiKey}/ExternalSubscriberImport:
+    post:
+      summary: Add or update multiple external subscribers.
+      parameters:
+        - name: apiKey
+          in: path
+          description: The Property ID for this request.
+          required: true
+        - name: data
+          in: formData
+          description: Contains a property called `Subscribers` which is an array of `Subcriber` elements.
+          required: true
+      responses:
+        200:
+          description: A queue element
+          examples:
+            application/json: >
+              {
+                "ID": "e63f94b4-247f-405d-9222-af01507271ec|0635781205603107443",
+                "NotificationEmailAddress": null,
+                "Status": "Queued"
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{apiKey}/ExternalSubscriberExport:
+    post:
+      summary: Begins an external subscriber export.
+      parameters:
+        - name: apiKey
+          in: path
+          description: The Property ID for this request.
+          required: true
+        - name: StartDate
+          in: formData
+          description: The timestamp of the beginning of the list
+          required: true
+        - name: EndDate
+          in: formData
+          description: The timestamp of the end of the list
+          required: true
+      responses:
+        200:
+          description: A queue element
+          examples:
+            application/json: >
+              {
+                "ID": "8CFDC883-88A5-43C2-ADC5-E80CB4BA7D16",
+                "NotificationEmailAddress": null,
+                "Status": "Queued",
+                "StartDate": "2016-04-20T05:00:00+00:00",
+                "EndDate": "2016-04-21T04:59:59+00:00"
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{apiKey}/ExternalFulfillmentSubscriptionExport:
+    post:
+      summary: Begins an external fulfillment export of subscribers eligible at the date given.
+      parameters:
+        - name: apiKey
+          in: path
+          description: The Property ID for this request.
+          required: true
+        - name: SubscriptionGroupID
+          in: formData
+          description: The subscription group ID that needs to be fulfilled
+          required: true
+        - name: AsOfDate
+          in: formData
+          description: The timestamp indicating the point in time to retrieve active subscriptions from.
+          required: true
+        - name: NotificationEmailAddress
+          in: formData
+          description: An optional email address that will be notified when this finishes.
+          required: false
+      responses:
+        200:
+          description: A queue element
+          examples:
+            application/json: >
+              {
+                "ID": "cd49cd82-f256-46d2-bd9e-79a57d30dc9a|0635968527481530084",
+                "NotificationEmailAddress": "email@address.com",
+                "Status": "Queued",
+                "SubscriptionGroupID": "14b00cc8-40a0-431e-94f1-27ffc4baf843",
+                "AsOfDate": "2015-12-09T21:03:55Z",
+                "Data": null
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{apiKey}/CallbackResult/{ExternalSubscriberLinkedCallbackToken}:
+    get:
+      summary: Retrieve data about an iMoneza user after an external subscriber is linked
+      parameters:
+        - name: apiKey
+          in: path
+          description: The Property ID for this request.
+          required: true
+        - name: ExternalSubscriberLinkedCallbackToken
+          in: path
+          description: This is the token retrieved from the callback of type `ExternalSubscriberLinked`
+          required: true
+      responses:
+        200:
+          description: A data element with a subscriber element child (the `Subscriptions` element will always be empty)
+          examples:
+            application/json: >
+              {
+                "SubscriberKey": "ABC-123",
+                "Users": [
+                  {
+                    "ApplicationUserID": "43f4c9e1-00fe-4520-8311-929c5351a637",
+                    "DemographicFields": [
+                      {
+                        "Name": "EmailAddress",
+                        "Value": "john.doe@fake.com"
+                      },
+                      {
+                        "Name": "PhoneNumber",
+                        "Value": "555-555-5555"
+                      }
+                    ],
+                    "Subscriptions": []
+                  }
+                ]
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{apiKey}/CallbackResult/{EligibleSubscriptionPurchasedCallbackToken}:
+    get:
+      summary: Retrieve data about a subscription purchase
+      parameters:
+        - name: apiKey
+          in: path
+          description: The Property ID for this request.
+          required: true
+        - name: EligibleSubscriptionPurchasedCallbackToken
+          in: path
+          description: This is the token retrieved from the callback of type `EligibleSubscriptionPurchased`
+          required: true
+      responses:
+        200:
+          description: A data element with a subscriber element child
+          examples:
+            application/json: >
+              {
+                "SubscriberKey": "ABC-123",
+                "Users": [
+                  {
+                    "ApplicationUserID": "43f4c9e1-00fe-4520-8311-929c5351a637",
+                    "DemographicFields": [
+                      {
+                        "Name": "EmailAddress",
+                        "Value": "chris.wilson@northwoodsoft.com"
+                      },
+                      {
+                        "Name": "PhoneNumber",
+                        "Value": ""
+                      }
+                    ],
+                    "Subscriptions": [
+                      {
+                        "SubscriptionKey": "Digital-All-Access",
+                        "ExpirationDate": "2016-01-09T16:27:11.7713801Z"
+                      }
+                    ]
+                  }
+                ]
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{apiKey}/CallbackResult/{ExternalSubscriberImportCompletedCallbackToken}:
+    get:
+      summary: Retrieve information about the external subscriber import including any errors that occurred.
+      parameters:
+        - name: apiKey
+          in: path
+          description: The Property ID for this request.
+          required: true
+        - name: ExternalSubscriberImportCompletedCallbackToken
+          in: path
+          description: This is the token retrieved from the callback of type `ExternalSubscriberImportCompleted`
+          required: true
+      responses:
+        200:
+          description: A status object
+          examples:
+            application/json: >
+              {
+                "Status": "Completed successfully",
+                "Errors": [],
+                "SuccessCount": 2,
+                "FailureCount": 0
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{apiKey}/CallbackResult/{ExternalSubscriberExportCompletedCallbackToken}:
+    get:
+      summary: Retrieve the external subscriber export.
+      parameters:
+        - name: apiKey
+          in: path
+          description: The Property ID for this request.
+          required: true
+        - name: ExternalSubscriberExportCompletedCallbackToken
+          in: path
+          description: This is the token retrieved from the callback of type `ExternalSubscriberExportCompleted`
+          required: true
+      responses:
+        200:
+          description: An array of external subscribers
+          examples:
+            application/json: >
+              [
+                {
+                  "SubscriberKey": "ABC-123",
+                  "Users": [
+                    {
+                      "ApplicationUserID": "43f4c9e1-00fe-4520-8311-929c5351a637",
+                      "DemographicFields": [
+                        {
+                          "Name": "EmailAddress",
+                          "Value": "john.doe@fake.com"
+                        },
+                        {
+                          "Name": "PhoneNumber",
+                          "Value": "555-555-5555"
+                        }
+                      ],
+                      "Subscriptions": [
+                        {
+                          "SubscriptionKey": "Digital-All-Access",
+                          "ExpirationDate": "2016-01-09T16:27:11.77"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{apiKey}/CallbackResult/{ExternalFulfillmentSubscriptionExportCallbackToken}:
+    get:
+      summary: Retrieve the external fulfillment subscription export.
+      parameters:
+        - name: apiKey
+          in: path
+          description: The Property ID for this request.
+          required: true
+        - name: ExternalFulfillmentSubscriptionExportCallbackToken
+          in: path
+          description: This is the token retrieved from the callback of type `ExternalFulfillmentSubscriptionExport`
+          required: true
+      responses:
+        200:
+          description: An array of external fulfillment subscriptions
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/Property/{apiKey}/CallbackResult/{ExternalFulfillmentSubscriptionPurchasedCallbackToken}:
+    get:
+      summary: Retrieve the external fulfillment information after a user has purchased one.
+      parameters:
+        - name: apiKey
+          in: path
+          description: The Property ID for this request.
+          required: true
+        - name: ExternalFulfillmentSubscriptionPurchasedCallbackToken
+          in: path
+          description: This is the token retrieved from the callback of type `ExternalFulfillmentSubscriptionPurchased`
+          required: true
+      responses:
+        200:
+          description: An object indicating the subscription data and demographic fields that the merchant has defined.
+          examples:
+            application/json: >
+              {
+                "SubscriptionID": "e445853c-bb3f-45df-8024-b46d8bf1d033",
+                "ApplicationUserID": "1ad322c4-c9c3-4865-bd56-96f27f9a3002",
+                "Subscription": {
+                  "SubscriptionKey": "print-daily",
+                  "ExpirationDate": "2016-01-07T20:44:00.3100111Z",
+                  "DemographicFields": null
+                },
+                "DemographicFields": [
+                  {
+                    "Name": "Address_Line1",
+                    "Value": "123 Main St."
+                  },
+                  {
+                    "Name": "Address_Line2",
+                    "Value": ""
+                  },
+                  {
+                    "Name": "Address_City",
+                    "Value": "Milwaukee"
+                  },
+                  {
+                    "Name": "Address_State",
+                    "Value": "AL"
+                  },
+                  {
+                    "Name": "Address_PostalCode",
+                    "Value": "53211"
+                  },
+                  {
+                    "Name": "Address_Country",
+                    "Value": "US"
+                  },
+                  {
+                    "Name": "Address",
+                    "Value": "Home"
+                  },
+                  {
+                    "Name": "EmailAddress",
+                    "Value": "405@fake.com"
+                  },
+                  {
+                    "Name": "PhoneNumber",
+                    "Value": "555-555-5555"
+                  },
+                  {
+                    "Name": "EmailPreference",
+                    "Value": "SharePublic"
+                  },
+                  {
+                    "Name": "Agree",
+                    "Value": "true"
+                  }
+                ]
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found

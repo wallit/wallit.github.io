@@ -1,0 +1,154 @@
+{% for route in include.swagger.paths %}
+<h4>{{include.baseurl }}</h4>
+
+{% for method in route[1] %}
+<div class="option-description card">
+    <div class="option-description-navigation">
+        <a href="#" class="active btn" data-panel=".description"><code>{{ method[0] | upcase }}</code></a>
+        <code>{{ route[0] }}</code>
+    </div>
+    <section class="card-content description">
+        <p>{{ method[1].summary | markdownify }}</p>
+        {% if method[1].parameters %}
+            <h5>Parameters</h5>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Where</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                </tr>
+                {% for parameter in method[1].parameters %}
+                <tr>
+                    <td>
+                        {% if parameter.required %}
+                        <span class="required">
+                        {% endif %}
+                        {{ parameter.name }}
+                        {% if parameter.required %}
+                        </span>
+                        {% endif %}
+                    </td>
+                    <td>{{ parameter.in }}</td>
+                    <td>{{ parameter.description | markdownify }}</td>
+                    <td>
+                        {% if parameter.type %}
+                        {{ parameter.type | capitalize }}
+                        {% if parameter.items %}
+                        of {{ parameter.items.type | capitalize }}
+                        {% endif %}
+                        {% else %}
+                        String
+                        {% endif %}
+                        {% if parameter.enum %}
+                        <ul>
+                            {% for enum in parameter.enum %}
+                            <li>{{ enum }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </section>
+</div>
+{% endfor %}
+
+{% endfor %}
+
+
+
+
+
+
+
+
+
+{% for route in include.swagger.paths %}
+
+<div class="swagger-paths">
+    <h2 class="swagger-path">{{ route[0] }}</h2>
+    {% for method in route[1] %}
+    <div class="swagger-method swagger-method-{{ method[0] }}">
+        <h3 class="swagger-method-title">
+            <span class="swagger-method-link">
+                <span class="swagger-method-name">{{ method[0] | upcase }}</span>
+                {{ method[1].summary | markdownify }}
+            </span>
+        </h3>
+        <div class="swagger-method-details collapse">
+            {% if method[1].parameters %}
+            <div class="swagger-parameters">
+                <h4>Parameters</h4>
+                <table class="swagger-parameters-table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Located in</th>
+                        <th>Description</th>
+                        <th>Type</th>
+                    </tr>
+                    {% for parameter in method[1].parameters %}
+                    <tr>
+                        <td>
+                            {% if parameter.required %}
+                                <span class="swagger-parameter-required">
+                                {% endif %}
+                                {{ parameter.name }}
+                                {% if parameter.required %}
+                                </span>
+                            {% endif %}
+                        </td>
+                        <td>{{ parameter.in }}</td>
+                        <td>{{ parameter.description | markdownify }}</td>
+                        <td>
+                            {% if parameter.type %}
+                            {{ parameter.type | capitalize }}
+                            {% if parameter.items %}
+                            of {{ parameter.items.type | capitalize }}
+                            {% endif %}
+                            {% else %}
+                            String
+                            {% endif %}
+                            {% if parameter.enum %}
+                            <ul>
+                                {% for enum in parameter.enum %}
+                                <li>{{ enum }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {% endif %}
+            {% if method[1].responses %}
+            <div class="swagger-response">
+                <h4>Responses</h4>
+                {% for response in method[1].responses %}
+                <h5>
+                    <span class="swagger-response-code">{{ response[0] }}</span>
+                    {{ response[1].description }}
+                </h5>
+                {% for content_type in include.swagger.produces %}
+                {% if response[1].examples[content_type] %}
+                {% assign example = response[1].examples[content_type] %}
+                {% if content_type contains 'json' %}
+                {% highlight json %}{{ example }}{% endhighlight %}
+                {% elsif content_type contains 'xml' %}
+                {% highlight xml %}{{ example }}{% endhighlight %}
+                {% else %}
+                {% highlight http %}{{ example }}{% endhighlight %}
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}

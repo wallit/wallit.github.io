@@ -1,0 +1,177 @@
+swagger: "2.0"
+consumes:
+  - application/json
+  - application/xml
+produces:
+  - application/json
+  - application/xml
+paths:
+  /api/Resource/{accessKey}/{resourceKey}:
+    get:
+      summary: Returns access data about a resource based on its resource key
+      parameters:
+        - name: accessKey
+          in: path
+          description: Your Resource Access API access key.
+          type: string
+          required: true
+        - name: resourceKey
+          in: path
+          description: The external key for the resource being accessed.
+          type: string
+          required: true
+        - name: ResourceURL
+          in: query
+          description: A URL for the resource. If dynamic resource creation needs to occur, this URL will be spidered by iMoneza to gather resource data.
+          type: string
+          required: true
+        - name: UserToken
+          in: query
+          type: string
+          description: An existing user token that was stored as a cookie. This value can be empty if the user doesn’t have an existing user token cookie, but the parameter is required.
+          required: true
+        - name: IP
+          in: query
+          description: The IP address of the user requesting a resource. This parameter is optional. The IP address can be IPv4 or IPv6.
+          type: string
+          required: false
+        - name: AdBlockerStatus
+          in: query
+          description: The result of any ad blocker detection performed by the API consumer.
+          type: string
+          enum: ["Unknown", "DetectionNotPerformed", "AdBlockerNotDetected", "AdBlockerDetected"]
+          required: false
+          default: "Unknown"
+        - name: UseLegacyPaywall
+          in: query
+          description: Whether or not to use the legacy paywall.
+          required: false
+          default: false
+          type: boolean
+      responses:
+        200:
+          description: A resource access object
+          examples:
+            application/json: >
+              {
+                "UserToken": "e313128d-21c4-4dad-a8e4-8928993f08a7|635633302264795088|2OnHROFPE3WgONGDeUyZJkluyORc0UBYOXABTLaU",
+                "PropertyName": "Acme, Inc.",
+                "PaywallDisplayStyle": "RedirectMobile",
+                "ResourceName": "Front Page News",
+                "UserName": "johndoe",
+                "FirstName": "John",
+                "IsAnonymousUser": false,
+                "IsAdSupported": false,
+                "AdSupportedMessageTitle": "",
+                "AdSupportedMessage": "",
+                "AdBlockerStatus": "Unknown",
+                "IsNoCost": false,
+                "Quota": {
+                  "IsEnabled": false,
+                  "HitCount": -1,
+                  "AllowedHits": -1,
+                  "PeriodStartDate": "2015-03-30T16:37:06.4795088Z",
+                  "PeriodName": "",
+                  "IsMet": true
+                },
+                "Subscription": {
+                  "IsExpired": false,
+                  "ExpirationDate": "2015-03-30T16:37:06.4795088Z",
+                  "IsCurrent": false,
+                  "SubscriptionGroupID": ""
+                },
+                "Purchase": {
+                  "IsPurchased": false
+                },
+                "AccessAction": "Purchase",
+                "AccessReason": "Deny",
+                "AccessActionURL": "https://accessui.imoneza.com/ResourceAccess/?ApiKey=2ba53ade-07a7-427f-8e06-2bc7733a2fc8&ResourceKey=51&UserToken=e313128d-21c4-4dad-a8e4-8928993f08a7%7c635633302264795088%7c2OnHROFPE3WgONGDeUyZJkluyORc0UBYOXABTLaU&SendTemporaryUserToken=True"
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found
+  /api/TemporaryUserToken/{accessKey}/{temporaryUserToken}:
+    get:
+      summary: Returns resource access data based on a temporary user token.
+      parameters:
+        - name: accessKey
+          in: path
+          description: Your Resource Access API access key.
+          required: true
+        - name: temporaryUserToken
+          in: path
+          description: A temporary user token that was passed to the page in the iMonezaTUT URL parameter.
+          required: true
+        - name: ResourceKey
+          in: query
+          description: The external key for the resource being accessed.
+          required: true
+        - name: ResourceURL
+          in: query
+          description: A URL for the resource. If dynamic resource creation needs to occur, this URL will be spidered by iMoneza to gather resource data.
+          required: true
+        - name: IP
+          in: query
+          description: The IP address of the user requesting a resource. This parameter is optional. The IP address can be IPv4 or IPv6.
+          required: false
+        - name: AdBlockerStatus
+          in: query
+          description: The result of any ad blocker detection performed by the API consumer.
+          type: string
+          enum: ["Unknown", "DetectionNotPerformed", "AdBlockerNotDetected", "AdBlockerDetected"]
+          required: false
+          default: "Unknown"
+        - name: UseLegacyPaywall
+          in: query
+          description: Whether or not to use the legacy paywall.
+          required: false
+          default: false
+          type: boolean
+      responses:
+        200:
+          description: A resource access object
+          examples:
+            application/json: >
+              {
+                "UserToken": "e313128d-21c4-4dad-a8e4-8928993f08a7|635633302264795088|2OnHROFPE3WgONGDeUyZJkluyORc0UBYOXABTLaU",
+                "PropertyName": "Acme, Inc.",
+                "PaywallDisplayStyle": "RedirectMobile",
+                "ResourceName": "Front Page News",
+                "UserName": "johndoe",
+                "FirstName": "John",
+                "IsAnonymousUser": false,
+                "IsAdSupported": false,
+                "AdSupportedMessageTitle": "",
+                "AdSupportedMessage": "",
+                "AdBlockerStatus": "Unknown",
+                "IsNoCost": false,
+                "Quota": {
+                  "IsEnabled": false,
+                  "HitCount": -1,
+                  "AllowedHits": -1,
+                  "PeriodStartDate": "2015-03-30T16:37:06.4795088Z",
+                  "PeriodName": "",
+                  "IsMet": true
+                },
+                "Subscription": {
+                  "IsExpired": false,
+                  "ExpirationDate": "2015-03-30T16:37:06.4795088Z",
+                  "IsCurrent": false,
+                  "SubscriptionGroupID": ""
+                },
+                "Purchase": {
+                  "IsPurchased": false
+                },
+                "AccessAction": "Purchase",
+                "AccessReason": "Deny",
+                "AccessActionURL": "https://accessui.imoneza.com/ResourceAccess/?ApiKey=2ba53ade-07a7-427f-8e06-2bc7733a2fc8&ResourceKey=51&UserToken=e313128d-21c4-4dad-a8e4-8928993f08a7%7c635633302264795088%7c2OnHROFPE3WgONGDeUyZJkluyORc0UBYOXABTLaU&SendTemporaryUserToken=True"
+              }
+        401:
+          description: Authentication Failure
+        403:
+          description: Not Authorized
+        404:
+          description: Item Not found

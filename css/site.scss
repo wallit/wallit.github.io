@@ -3,6 +3,7 @@
 @import "materialize/materialize";
 @import "custom-flow-text";
 @import "syntax-highlighting";
+@import "swagger";
 
 .side-nav ul {
   margin-left: 10px;
@@ -47,32 +48,37 @@ h5 {
 }
 
 /**
- * the style for the code option blocks in the JS
+ * the style for the code option blocks in the JS and the API
  */
 .option-description {
   margin-top: 3rem;
 }
-.option-description section:last-child {
+.option-description section:last-child:not(:only-of-type) {
   display: none;
 }
-.option-description > div a {
-  text-transform: inherit;
-  border-radius: 0;
-  box-shadow: none;
-  color: #000000;
-  background-color: transparent;
-}
-.option-description > div a.active {
-  background-color: color('blue-grey', 'darken-2');
-  border-bottom: 4px solid color("cyan", "lighten-3");
-  box-shadow: none;
-  color: #ffffff;
-}
-.option-description > div a:hover:not(.active) {
-  border-bottom: 4px solid color("grey", "lighten-1");
-  background-color: color("grey", "lighten-2");
-  box-shadow: none;
-}
+.option-description > div {
+  a {
+    text-transform: inherit;
+    border-radius: 0;
+    box-shadow: none;
+    color: #000000;
+    background-color: transparent;
+  }
+  a.active {
+    background-color: color('blue-grey', 'darken-2');
+    border-bottom: 4px solid color("cyan", "lighten-3");
+    box-shadow: none;
+    color: #ffffff;
+  }
+  a:hover:not(.active) {
+    border-bottom: 4px solid color("grey", "lighten-1");
+    background-color: color("grey", "lighten-2");
+    box-shadow: none;
+  }
+  code {
+    margin-left: 0.5rem;
+  }
+} 
 
 .option-description .row {
   margin-top: 1rem;
