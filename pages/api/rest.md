@@ -79,7 +79,9 @@ This section describes the API URL's and endpoints for Wallit.
 
 The Resource Access API is used for access control, validating a user’s access to content.
 
+<!--
 {% include swagger-block.html baseurl="https://accessapi.wallit.io" swagger=site.data.accessapi %}
+-->
 
 ### Resource Management API
 
