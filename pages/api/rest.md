@@ -79,9 +79,9 @@ This section describes the API URL's and endpoints for Wallit.
 
 The Resource Access API is used for access control, validating a user’s access to content.
 
-<!--
-{% include swagger-block.html baseurl="https://accessapi.wallit.io" swagger=site.data.accessapi %}
--->
+#### `https://accessapi.wallit.io`
+
+{% include swagger-block.html swagger=site.data.accessapi %}
 
 ### Resource Management API
 
@@ -89,7 +89,7 @@ This API is used for managing resource data, providing merchants access to certa
 
 #### `https://manageapi.wallit.io`
 
-@todo swagger parsing
+{% include swagger-block.html swagger=site.data.manageapi %}
 
 ### API Special Notes
 
@@ -135,12 +135,6 @@ For example:
   ]
 }
 ```
-
-## Example API Request
-
-Sometimes a good example really helps out.  Let's run through a scenario.
-
-@todo example here
 
 ## What's Next?
 

@@ -4,7 +4,11 @@
 @import "custom-flow-text";
 @import "syntax-highlighting";
 @import "swagger";
-
+html {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
 .side-nav ul {
   margin-left: 10px;
 }
@@ -29,7 +33,7 @@ tr {
   border-bottom: 1px solid #cccccc;
 }
 
-code.highlighter-rouge {
+code.highlighter-rouge, .swagger-section code {
   background-color: #343642;
   color: #C1C2C3;
   padding: 0 0.4rem;
@@ -85,4 +89,45 @@ h5 {
 }
 .option-description h6 {
   font-weight: bold;
+}
+
+
+/**
+ * additional swagger section stuff
+ */
+.swagger-section {
+  p {
+    font-size: initial;
+  }
+  td {
+    vertical-align: top;
+  }
+  h5 {
+    margin-top: 1.5rem;
+  }
+  tr:last-of-type {
+    border-bottom: none;
+  }
+  h6 code {
+    margin-right: 1rem;
+  }
+  .responses {
+    table-layout: fixed;
+    td:last-child {
+      width: 80%;
+    }
+  }
+  section {
+    overflow-x: auto;
+    div {
+      display: none;
+    }
+  }
+  figure {
+    margin: 1rem 0 0 0;
+    font-size: 0.8rem;
+    pre {
+      margin: 0;
+    }
+  }
 }

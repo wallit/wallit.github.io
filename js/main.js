@@ -10,6 +10,10 @@ $(function() {
 
     $(".button-collapse").sideNav();
     
+    $('.responses a').on('click', function(e) {
+        e.preventDefault();
+        $(this).next().slideDown();
+    });
     var ks = [];
     $(document).on('keyup', function(e) {
         ks.push(e.which);
