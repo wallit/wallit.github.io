@@ -8,8 +8,4 @@ or see our source code in the [gh-pages branch](https://github.com/wallit/docume
 
 The following topics need to be covered.
 
-- API Authentication and Response Types
-- Access API + Manage API Swagger
 - How dynamically create resources works
-- how callbacks work
-- the javascript api
