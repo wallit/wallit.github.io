@@ -315,6 +315,65 @@ If the response is not of authorization granted, it's most likely a spider or so
 protected code directly.  In our case, we're polite, and just send a 403 error.  The worst thing to see would be some 
 cached articles in Google saying "Stop trying to hack me, hacker!" - so we suggest being polite!
 
+## Perform a Custom Action For Users Under Their Meter
+
+**Scenario** You want to trigger some sort of custom action when a user is granted access to a page because they are under the
+metered limit. This could be a revenue-generating action, such as displaying additional ads or a Google Consumer Survey.
+
+**Solution** You can supply a custom `accessGranted` method to the Javascript Library to trigger your custom action. Within this
+method, you can determine why the user is being granted access.
+
+Here's an example:
+```html
+<html>
+    <head>
+        <script src="https://cdn.wallit.io/paywall.min.js"></script>
+        <script type="text/javascript">
+            Wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+            accessGranted: function (data) {
+                if (data.AccessReason == 'Quota') {
+                    alert('The user has not maxed out their metered usage.');
+                }
+            });
+        </script>
+        <!-- other content here -->
+    </head>
+    <body>
+        <!-- your main website code -->
+    </body>
+</html>
+```
+
+The custom action can, in turn, call other libraries. This example will display a [Google Consumer Survey](https://support.google.com/360suite/surveys/answer/6172863?hl=en&ref_topic=6172724):
+  ```html
+<html>
+    <head>
+        <script src="https://cdn.wallit.io/paywall.min.js"></script>
+        <script type="text/javascript">
+            Wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+            accessGranted: function (data) {
+                if (data.AccessReason == 'Quota') {
+                    var ARTICLE_URL = window.location.href;
+                    var CONTENT_ID = 'everything';
+                    document.write(
+                        '<scr'+'ipt '+
+                        'src="//survey.g.doubleclick.net/survey?site=_GCSACCOUNTID'+
+                        '&amp;url='+encodeURIComponent(ARTICLE_URL)+
+                        (CONTENT_ID ? '&amp;cid='+encodeURIComponent(CONTENT_ID) : '')+
+                        '&amp;random='+(new Date).getTime()+
+                        '" type="text/javascript">'+'\x3C/scr'+'ipt>');
+                }
+            });
+        </script>
+        <!-- other content here -->
+    </head>
+    <body>
+        <!-- your main website code -->
+    </body>
+</html>
+```
+
+
 ## Standard Programmer Disclaimer
 
 Please remember these are just a common scenarios and bits of code to get you 80% of the way there.  We'd hate for you 
