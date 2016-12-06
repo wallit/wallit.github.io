@@ -35,7 +35,7 @@ Here's an example of an HTML document with the javascript library in use for thi
         <title>My Amazing Article | Publisher Times</title>
         <script src="https://cdn.wallit.io/paywall.min.js"></script>
           <script type="text/javascript">
-            Wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec');
+            wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec');
           </script>
         <!-- other content here -->
     </head>
@@ -324,12 +324,13 @@ metered limit. This could be a revenue-generating action, such as displaying add
 method, you can determine why the user is being granted access.
 
 Here's an example:
+
 ```html
 <html>
     <head>
         <script src="https://cdn.wallit.io/paywall.min.js"></script>
         <script type="text/javascript">
-            Wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+            wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
             accessGranted: function (data) {
                 if (data.AccessReason == 'Quota') {
                     alert('The user has not maxed out their metered usage.');
@@ -345,12 +346,13 @@ Here's an example:
 ```
 
 The custom action can, in turn, call other libraries. This example will display a [Google Consumer Survey](https://support.google.com/360suite/surveys/answer/6172863?hl=en&ref_topic=6172724):
-  ```html
+
+```html
 <html>
     <head>
         <script src="https://cdn.wallit.io/paywall.min.js"></script>
         <script type="text/javascript">
-            Wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+            wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
             accessGranted: function (data) {
                 if (data.AccessReason == 'Quota') {
                     var ARTICLE_URL = window.location.href;
@@ -373,6 +375,38 @@ The custom action can, in turn, call other libraries. This example will display 
 </html>
 ```
 
+## Display Custom Access Messages on the Embedded Wallet
+
+**Scenario** You want to customize the access text that's displayed on the embedded wallet. For instance, if a user has a subscription, you want to display the date when the subscription expires.
+
+**Solution** You can supply a custom `getAccessMessage` method to the Javascript Library that returns the value to display. This method has access to the resourceAccessData object, which it can use to get the subscription expiration date. If you only want to provide a custom value for one type of access message, you can call `wallit.paywall.getDefaultAccessMessage` to get the default message for other scenarios.
+
+Here's an example:
+
+```html
+<html>
+    <head>
+        <script src="https://cdn.wallit.io/paywall.min.js"></script>
+        <script type="text/javascript">
+            wallit.paywall.init('b865156f-9e0d-48b6-a2a0-097456f689ec', {
+                getAccessMessage: function (data) {
+                    if (data.AccessReason == 'Subscription') {
+                        var expirationDate = new Date(data.Subscription.ExpirationDate);
+                        // JS months are 0-indexed
+                        return 'Your subscription expires on ' + (expirationDate.getMonth() + 1) + '/' + expirationDate.getDate() + '/' + expirationDate.getFullYear() + '.';
+                    }
+                    else
+                        return wallit.paywall.getDefaultAccessMessage(data);
+                }
+            });
+        </script>
+        <!-- other content here -->
+    </head>
+    <body>
+        <!-- your main website code -->
+    </body>
+</html>
+```
 
 ## Standard Programmer Disclaimer
 
