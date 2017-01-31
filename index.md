@@ -9,5 +9,5 @@ This site holds the documentation and code that Wallit has open-sourced for your
 
 # Documentation
 
-**[Overview of Concepts]({{site.baseurl}}/overview-of-concepts)** What API to use & why, how things generally work, and where to go (hey now!) to get your task done
+**[Documentation]({{site.baseurl}}/documentation-home)** Our main documentation library
 
