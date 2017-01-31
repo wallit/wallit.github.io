@@ -9,13 +9,13 @@ Since you're on GitHub, you're probably a programmer or someone with IT knowledg
   <div class="col m12 l6">
     <h2>CMS Plugins</h2>
     <ul>
-      <li class="flow-text"><a href="https://github.com/wallit/wordpress-wallit">WordPress Plugin</a></li>
-      <li class="flow-text"><a href="https://github.com/wallit/drupal-wallit">Drupal Plugin</a></li>
+      <li class="flow-text"><a href="https://github.com/wallit/wordpress-wallit"><i class="icon-wordpress medium"></i> WordPress Plugin</a></li>
+      <li class="flow-text"><a href="https://github.com/wallit/drupal-wallit"><i class="icon-drupal medium"></i> Drupal Plugin</a></li>
     </ul>
     <h2>SDKs</h2>
     <ul>
-      <li class="flow-text"><a href="https://github.com/wallit/wallit-php-sdk">PHP SDK</a></li>
-      <li class="flow-text"><a href="https://github.com/wallit/wallit-nodejs-sdk">NodeJS SDK</a></li>
+      <li class="flow-text"><a href="https://github.com/wallit/wallit-php-sdk"><i class="icon-php medium"></i> PHP SDK</a></li>
+      <li class="flow-text"><a href="https://github.com/wallit/wallit-nodejs-sdk"><i class="icon-nodejs medium"></i> NodeJS SDK</a></li>
     </ul>
   </div>
   <div class="col m12 l6">
