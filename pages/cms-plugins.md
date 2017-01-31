@@ -8,6 +8,6 @@ CMS plugins make it quick and easy to integrate your existing CMS with Wallit.
 
 Plugins are available for the following platforms:
 
-**[WordPress](https://github.com/wallit/wordpress-wallit)**{: .btn}
+**[WordPress](https://github.com/wallit/wordpress-wallit){: .btn}**
 
-**[Drupal](https://github.com/wallit/drupal-wallit)**{: .btn}
+**[Drupal](https://github.com/wallit/drupal-wallit){: .btn}**
