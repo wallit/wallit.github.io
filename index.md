@@ -11,15 +11,15 @@ This site holds the documentation and code that Wallit has open-sourced for your
   <div class="col s6">
     <h2>Documentation</h2>
     <ul>
-      <li><a href="/documentation-home"><em>Documentation</em>:</a> If you're new to our documentation, start here.</li>
-      <li><a href="/api"><em>Detailed API Documentation</em>:</a> Jump right in to the technical details of our assorted APIs.</li>
+      <li class="flow-text"><a href="/documentation-home"><strong>Documentation</strong>:</a> If you're new to our documentation, start here.</li>
+      <li class="flow-text"><a href="/api"><strong>Detailed API Documentation</strong>:</a> Jump right in to the technical details of our assorted APIs.</li>
     </ul>
   </div>
   <div class="col s6">
     <h2>Integrations</h2>
     <ul>
-      <li><em>CMS Plugins</em>: Find plugins for your CMS of choice.</li>
-      <li><em>Libraries</em>: Get the libraries you need to start developing your integration.</li>
+      <li class="flow-text"><strong>CMS Plugins</strong>: Find plugins for your CMS of choice.</li>
+      <li class="flow-text"><strong>Libraries</strong>: Get the libraries you need to start developing your integration.</li>
     </ul>
   </div>
 </div>
