@@ -1,6 +1,5 @@
 # Site settings
 title: Wallit on GitHub
-baseurl: 
 
 # Build settings
 markdown: kramdown
