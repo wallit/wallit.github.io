@@ -24,8 +24,18 @@
                             <li><a href="{{site.baseurl}}/common-scenarios">Common Scenarios</a></li>
                             <li><a href="{{site.baseurl}}/api">Detailed API Documentation</a></li>
                         </ul>
-                        <li><a href="{{site.baseurl}}/sdks">SDKs</a></li>
-                        <li><a href="{{site.baseurl}}/cms-plugins">CMS Plugins</a></li>
+                        <li><a class="dropdown-button" href="#!" data-activates="documentation-dropdown">SDKs<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <ul id="documentation-dropdown" class="dropdown-content">
+                            <li><a href="{{site.baseurl}}/sdks">SDKs Overview</a></li>
+                            <li><a href="https://github.com/wallit/wallit-php-sdk">PHP SDK</a></li>
+                            <li><a href="https://github.com/wallit/wallit-nodejs-sdk">NodeJS SDK</a></li>
+                        </ul>
+                        <li><a class="dropdown-button" href="#!" data-activates="documentation-dropdown">CMS Plugins<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <ul id="documentation-dropdown" class="dropdown-content">
+                            <li><a href="{{site.baseurl}}/cms-plugins">CMS Plugins Overview</a></li>
+                            <li><a href="https://github.com/wallit/wordpress-wallit">WordPress Plugin</a></li>
+                            <li><a href="https://github.com/wallit/drupal-wallit">Drupal Plugin</a></li>
+                        </ul>
                     </ul>
                     <ul class="side-nav" id="mobile-menu">
                         <li><a href="{{site.baseurl}}/">Home</a></li>
@@ -42,7 +52,15 @@
                             </ul>
                         </ul>
                         <li><a href="{{site.baseurl}}/sdks">SDKs</a></li>
+                        <ul>
+                            <li><a href="https://github.com/wallit/wallit-php-sdk">PHP SDK</a></li>
+                            <li><a href="https://github.com/wallit/wallit-nodejs-sdk">NodeJS SDK</a></li>
+                        </ul>
                         <li><a href="{{site.baseurl}}/cms-plugins">CMS Plugins</a></li>
+                        <ul>
+                            <li><a href="https://github.com/wallit/wordpress-wallit">WordPress Plugin</a></li>
+                            <li><a href="https://github.com/wallit/drupal-wallit">Drupal Plugin</a></li>
+                        </ul>
                     </ul>
                 </div>
             </nav>
