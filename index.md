@@ -9,17 +9,18 @@ This site holds the documentation and code that Wallit has open-sourced for your
 
 <div class="row">
   <div class="col s6">
-    # Documentation
-
-    **[Documentation]({{site.baseurl}}/documentation-home)** If you're new to our documentation, start here.
-    **[Detailed API Documentation]({{site.baseurl}}/api/)** Jump right in to the technical details of our assorted APIs.
-
+    <h2>Documentation</h2>
+    <ul>
+      <li><a href="/documentation-home"><em>Documentation</em>:</a> If you're new to our documentation, start here.</li>
+      <li><a href="/api"><em>Detailed API Documentation</em>:</a> Jump right in to the technical details of our assorted APIs.</li>
+    </ul>
   </div>
   <div class="col s6">
-    # Integrations
-    
-    ** CMS Plugins ** Find plugins for your CMS of choice.
-    ** Libraries ** Get the libraries you need to start developing your integration.
+    <h2>Integrations</h2>
+    <ul>
+      <li><em>CMS Plugins</em>: Find plugins for your CMS of choice.</li>
+      <li><em>Libraries</em>: Get the libraries you need to start developing your integration.</li>
+    </ul>
   </div>
 </div>
 
