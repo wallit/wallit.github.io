@@ -1,36 +1,13 @@
 ---
-title: Wallit Technical Documentation
+title: Wallit on GitHub
 ---
-# Wallit Technical Documentation
+# Wallit on GitHub
 
-> How many software developers does it take to change a lightbulb?  None! That's a hardware problem!
+Since you're on GitHub, you're probably a programmer or someone with IT knowledge. If your first language isn't nerd, visit [our corporate site](https://wallit.io) to learn more about Wallit, the subscription management solution.
 
-Hey there! Welcome to our developer docs.  Trust us, we know that these things can get a little long winded and dry from
-time to time.  It's our intent to make this as painless as possible - like a root canal or a broken bone. Not bad at all!
+This site holds the documentation and code that Wallit has open-sourced for your integrations. First thing's first, make sure you have a merchant account with Wallit. You're going to need your API keys for any of the integrations. Next, choose if you're going to integrate with our software directly using Javascript, PHP, or any other language, or if you're going to use one of the plugins. If you want to use the plugins, you can download them directly from GitHub.
 
-Seriously though, whether you've been tasked to implement Wallit into your platform or you're just doing an audit to 
-see how easy (or hard?) it is to use us, we're glad you're here.  We only ask for **one favor**: if you see a bug in the 
-documentation, create a ticket, send a pull request, or at the very least, angrily tweet at us [(@mywallit)](https://twitter.com/mywallit).
-
-So, let's get started.
-
-## Overview
-
-We're assuming you already know a little bit about how Wallit works or what it does.  If not, just take a quick scroll
-through the [wallit.io](https://wallit.io) website - and then come back here. This documentation will describe a few 
-things: how to use the API's to automate the integration, how to create a paywall or access control system on your 
-web platform, and how to integrate external subscription services.  
-
-Have you ever had a meeting about an upcoming meeting? Then this should seem familiar: let us document what we're going to document:
+# Documentation
 
 **[Overview of Concepts]({{site.baseurl}}/overview-of-concepts)** What API to use & why, how things generally work, and where to go (hey now!) to get your task done
 
-**[Overview of User Interfaces]({{site.baseurl}}/overview-of-user-interfaces)** An explanation of the various user interfaces to Wallit
-
-**[Example and Common Scenarios]({{site.baseurl}}/common-scenarios)** Let's face it - most docs are **tldr;** - so scan this list first to see if we've already implemented your scenario
-
-**[Detailed API Documentation]({{site.baseurl}}/api)** Here we get into how to make API calls, what endpoints are, and the objects you can send/expect
-
-Clear as mud? Let's get started.
-
-[Go to Overview of Concepts →]({{site.baseurl}}/overview-of-concepts){: .btn}
