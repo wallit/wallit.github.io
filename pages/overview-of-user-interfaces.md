@@ -51,11 +51,17 @@ is optimized for speed.  This API is used behind the scenes with our javascript 
 server-side access control.  Basically, can the current visitor get at this resource; true or false?  That's what this API does. It's 
 black and white - kind of like what we assume one of our engineers sees daily - although he swears it's just a red/green "deficiency."
 
-**Manage API** The manage API contains a subset of the functionality found in the Manage UI.  This API interface will 
+**Manage API** This API contains a subset of the functionality found in the Manage UI.  This API interface will 
 allow you to automatically create resources, edit them, manage pricing and subscription groups, and more.  This API is
 most likely implemented in some sort of back-end system in your application.  For example, you might have users create
 content through a WYSIWYG type interface on your system, and when it's published, issue a request to this API to create 
 an associated resource with the proper access and pricing information.  This API is the real powerhouse of any automation.
+
+## Next Generation REST API
+
+This API is still a work in progress. It uses OAuth2 for authorization, and allows integrations that run under the guise of a specific user.
+
+The entire API is fully documented in its [Swagger definition](https://api.wallit.io//swagger/docs/v2), and you can use [Swagger UI](https://api.wallit.io/swagger/ui/index#/) to test it out.
 
 ## Callbacks
 
