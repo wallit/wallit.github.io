@@ -18,6 +18,8 @@ part of the hybrid protection scheme.
 in a similar fashion and provide a similar interface and authentication mechanism.  This section details the requests and 
 responses of the REST API.
 
+**[Next Generation REST API](https://api.wallit.io/swagger/ui/index#/)** The next generation REST API is a work in progress.
+
 **[Web Hook & Callbacks]({{site.baseurl}}/api/webhooks)** The callback and web hook section explains the various responses that Wallit can 
 send to your server, their format, and what to do with the information.
 
