@@ -21,10 +21,10 @@ Since you're on GitHub, you're probably a programmer or someone with IT knowledg
   <div class="col m12 l6">
     <h2>Technical Documentation</h2>
     <ul>
-      <li class="flow-text"><a href="/documentation-home"><i class="material-icons small">library_books</i> Documentation Home</a><br />If you're new to our documentation, start here.</li>
-      <li class="flow-text"><a href="/common-scenarios"><i class="material-icons small">library_books</i> Common Scenarios</a><br />Here's the good stuff - solutions to some of the most common integration scenarios.</li>
-      <li class="flow-text"><a href="/api"><i class="material-icons small">library_books</i> Detailed API Documentation</a><br />Jump right in to the technical details of our assorted APIs.</li>
-      <li class="flow-text"><a href="https://api.wallit.io/swagger/ui/index#/"><i class="material-icons small">library_books</i> Next Generation API</a><br />Take a look at the new API we're working on.</li>
+      <li class="flow-text"><a href="/documentation-home"><i class="material-icons medium">library_books</i> Documentation Home</a><br />If you're new to our documentation, start here.</li>
+      <li class="flow-text"><a href="/common-scenarios"><i class="material-icons medium">bookmark</i> Common Scenarios</a><br />Here's the good stuff - solutions to some of the most common integration scenarios.</li>
+      <li class="flow-text"><a href="/api"><i class="material-icons medium">library_books</i> Detailed API Documentation</a><br />Jump right in to the technical details of our assorted APIs.</li>
+      <li class="flow-text"><a href="https://api.wallit.io/swagger/ui/index#/"><i class="material-icons medium">open_in_new</i> Next Generation API</a><br />Take a look at the new API we're working on.</li>
     </ul>
   </div>
 </div>
