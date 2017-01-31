@@ -1,5 +1,6 @@
 ---
 title: Wallit Technical Documentation
+permalink: /documentation-home
 ---
 # Wallit Technical Documentation
 
