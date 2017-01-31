@@ -18,8 +18,8 @@ Since you're on GitHub, you're probably a programmer or someone with IT knowledg
   <div class="col m12 l6">
     <h2>Integrations</h2>
     <ul>
-      <li class="flow-text"><strong>CMS Plugins</strong>: Find plugins for your CMS of choice.</li>
-      <li class="flow-text"><strong>SDKs</strong>: Get the SDKs you need to start developing your integration.</li>
+      <li class="flow-text"><a href="/cms-plugins"><strong>CMS Plugins</strong>:</a> Find plugins for your CMS of choice.</li>
+      <li class="flow-text"><a href="/sdks"><strong>SDKs</strong>:</a> Get the SDKs you need to start developing your integration.</li>
     </ul>
   </div>
 </div>
