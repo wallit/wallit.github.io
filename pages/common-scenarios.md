@@ -11,6 +11,14 @@ some common scenarios and the Wallit integrations needed to achieve them.  A goo
 examples should get you 90% of the way to your end goal in most cases.  If you have questions or wonder how/why one of
 these examples work, that's the sign that you need to move on to the real meat of our documentation!
 
+Here are the common scenarios covered here:
+* [Client-side Protection, Dynamically Create Resources](#client-side-protection-dynamically-create-resources): You are going to protect all of your content with a javascript solution.  When new content is added to your site, a resource is automatically created in Wallit using your default settings.
+* [Server-side Create Resources After Publication](#server-side-create-resources-after-publication): You want to create an interface that allows users to add content using your website. They should be able to choose their pricing group before posting their content.
+* [WordPress Site Needs Protection](#wordpress-site-needs-protection): Your site uses WordPress as a CMS. You need either basic front-end protection or will be using the back-end redirect functionality. You may or may not have an archive of articles that need to be protected.
+* [Hybrid Approach Using Javascript Front-end and Back-end Protection](#hybrid-approach-using-javascript-front-end-and-back-end-protection): You want to take advantage of the embedded paywall and other front-end javascript features, but want extra security and protection for your content. It is important not to send protected content, even if it’s obscured, to unauthorized users.
+* [Perform a Custom Action For Users Under Their Meter](#perform-a-custom-action-for-users-under-their-meter): You want to trigger some sort of custom action when a user is granted access to a page because they are under the metered limit. This could be a revenue-generating action, such as displaying additional ads or a Google Consumer Survey.
+* [Display Custom Access Messages on the Embedded Wallet](#display-custom-access-messages-on-the-embedded-wallet): You want to customize the access text that’s displayed on the embedded wallet. For instance, if a user has a subscription, you want to display the date when the subscription expires.
+
 ## Client-side Protection, Dynamically Create Resources
 
 **Scenario** You are going to protect all of your content with a javascript solution.  When new content is added to your
