@@ -11,6 +11,10 @@ some common scenarios and the Wallit integrations needed to achieve them.  A goo
 examples should get you 90% of the way to your end goal in most cases.  If you have questions or wonder how/why one of
 these examples work, that's the sign that you need to move on to the real meat of our documentation!
 
+Here are the common scenarios covered here:
+* [Client-side Protection, Dynamically Create Resources](#client-side-protection-dynamically-create-resources): You are going to protect all of your content with a javascript solution.  When new content is added to your site, a resource is automatically created in Wallit using your default settings.
+* [Server-side Create Resources After Publication](#server-side-create-resources-after-publication): You want to create an interface that allows users to add content using your website. They should be able to choose their pricing group before posting their content.
+
 ## Client-side Protection, Dynamically Create Resources
 
 **Scenario** You are going to protect all of your content with a javascript solution.  When new content is added to your
