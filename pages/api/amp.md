@@ -46,6 +46,7 @@ To use Wallit's paywall, add a reference to the amp-access extension and, depend
 Use the `amp-access` attribute to control which parts of the page are publicly accessible and which are protected. The main thing to check if the `AccessReason` value. If it's set to `Deny`, the user doesn't have access to the resource.
 
 Here's an example:
+
 ```html
 <div amp-access="AccessReason = 'Deny'" amp-access-hide>
 	You do not have access to this content.

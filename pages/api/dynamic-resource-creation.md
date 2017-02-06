@@ -5,7 +5,7 @@ layout: api
 ---
 # Dynamic Resource Creation
 
-***Should you read this?** This is all about dynamic resource creation. This feature lets Wallit automatically spider content on your site and generate resources for you. Unless you're using a plugin or other integration to manage your resources, you should probably read this.
+***Should you read this?** This is all about dynamic resource creation. This feature lets Wallit automatically spider content on your site and generate resources for you. Unless you're using a plugin or other integration to manage your resources, you should probably read this.*
 
 ## Overview
 
