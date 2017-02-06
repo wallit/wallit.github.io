@@ -41,7 +41,7 @@ To use Wallit's paywall, add a reference to the amp-access extension and, depend
 </script>
 ```
 
-## Defining Protected Content
+### Defining Protected Content
 
 Use the `amp-access` attribute to control which parts of the page are publicly accessible and which are protected. The main thing to check if the `AccessReason` value. If it's set to `Deny`, the user doesn't have access to the resource.
 
@@ -75,7 +75,7 @@ To display a "Log Out" button if the user is authenticated:
 </div>
 ```
 
-## Metering
+### Metering
 
 If you use metered pricing, you can display information about the user's meter by accessing the `Quota` object. For instance:
 
@@ -89,7 +89,12 @@ If you use metered pricing, you can display information about the user's meter b
 
 ## Dynamic Resource Creation
 
-## Unsupported Features
+Wallit's dynamic resource creation relies on using a `script` tag to convey detailed metadata, which isn't allowed on AMP pages. When dynamic resource creation occurs for an AMP page, the canonical page will be spidered, if provided. This means that additional metadata can be provided on the canonical page. It also means that the canonical page and the AMP page will be treated as a single resource.
 
+## Unsupported Wallit Features When Using AMP
 
-
+Some Wallit features are not compatible with or are ignored on AMP pages:
+* Embedded paywall
+* Embedded wallet
+* Embedded confirmation
+* Ad blocker detection, ad blocker metering, and ad blocker pricing
