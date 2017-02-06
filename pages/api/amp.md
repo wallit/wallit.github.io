@@ -87,7 +87,11 @@ If you use metered pricing, you can display information about the user's meter b
 </section>
 ```
 
-## Dynamic Resource Creation
+## External Keys and Canonical URLs
+
+Wallit's access control mechanisms assume every resource has an API key and a resource/external key associated with it. This combination of keys uniquely identifies a resource, which allows Wallit to determine access rights.
+
+With AMP, there's no way to specify an external key from the client-side (as there is with Wallit's JavaScript Library). Instead, Wallit uses the canonical URL of the document as an identifier, looking for an existing resource with that same URL. If there is more than one resource defined with that URL, Wallit will pick one to use. Note that the canonical URL must exactly match the URL stored for a resource.
 
 Wallit's dynamic resource creation relies on using a `script` tag to convey detailed metadata, which isn't allowed on AMP pages. When dynamic resource creation occurs for an AMP page, the canonical page will be spidered, if provided. This means that additional metadata can be provided on the canonical page. It also means that the canonical page and the AMP page will be treated as a single resource.
 
