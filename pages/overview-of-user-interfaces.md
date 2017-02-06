@@ -81,6 +81,10 @@ As we covered earlier, there are a number of ways to do resource protection and 
 the Javascript library except for a server-side only redirect option.  Client-side and hybrid approaches still require the 
 javascript library.  
 
+## Dynamic Resource Creation
+
+Dynamic resource creation is a way for Wallit to automatically catalog the resources on your site. It uses a spider (like Googlebot, not like the arachnid) to index pages on your site and configure a Wallit resource to match.
+
 ## SDKs
 
 Without a doubt, programmers always love trying to figure out how to use a new API.  The challenges, the research, the
