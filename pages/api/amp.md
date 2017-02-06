@@ -18,7 +18,7 @@ First, you [create a valid AMP page](https://www.ampproject.org/docs/get_started
 
 Next, add a reference to the amp-access extension and, depending on your requirements, the amp-mustache extension.
 
-Next, define the amp-access settings. Use your Access API key in the URLs - the example below has an API key of b865156f-9e0d-48b6-a2a0-097456f689ec.
+Next, define the amp-access settings. Use your Access API key in the URLs - the example below has an API key of b865156f-9e0d-48b6-a2a0-097456f689ec. Everything else can be copied verbatim from the example below - AMP will automatically populate the variables like `READER_ID` when it processes the page.
 
 ```html
 <script async custom-element="amp-access" src="https://cdn.ampproject.org/v0/amp-access-0.1.js"></script>
@@ -41,6 +41,51 @@ Next, define the amp-access settings. Use your Access API key in the URLs - the 
 </script>
 ```
 
+## Defining Protected Content
+
+Use the `amp-access` attribute to control which parts of the page are publicly accessible and which are protected. The main thing to check if the `AccessReason` value. If it's set to `Deny`, the user doesn't have access to the resource.
+
+Here's an example:
+```html
+<div amp-access="AccessReason = 'Deny'" amp-access-hide>
+	You do not have access to this content.
+</div>
+
+<div amp-access="NOT (AccessReason = 'Deny')" amp-access-hide>
+	This is protected content.
+</div>
+```
+
+To send the user to the paywall, call `tap:amp-access.login-log-in`. To log a user out, call `tap:amp-access.login-log-out`. For instance:
+
+```html
+<div amp-access="AccessReason = 'Deny'" amp-access-hide>
+  <p>To read more, you must purchase this page.</p>
+  <button on="tap:amp-access.login-log-in">Purchase</button>
+</div>
+```
+
+To display a "Log Out" button if the user is authenticated:
+
+```html
+<div amp-access="NOT IsAnonymousUser" amp-access-hide>
+  <template amp-access-template type="amp-mustache">
+	<button on="tap:amp-access.login-log-out">Log Out</button>
+  </template>
+</div>
+```
+
+## Metering
+
+If you use metered pricing, you can display information about the user's meter by accessing the `Quota` object. For instance:
+
+```html
+<section amp-access="Quota.IsEnabled">
+  <template amp-access-template type="amp-mustache">
+	You are reading page {{Quota.HitCount}} out of {{Quota.AllowedHits}}.
+  </template>
+</section>
+```
 
 ## Dynamic Resource Creation
 
