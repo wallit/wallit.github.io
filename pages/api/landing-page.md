@@ -10,7 +10,7 @@ layout: api
 As we [mentioned before]({{site.baseurl}}/overview-of-user-interfaces), we offer a number of user interfaces and API layers.  From the 
 list below, please select the section you'd like to get into deeper.
 
-**[Javascript Library]({{site.baseurl}}/api/js)** The javascript library provides the function for the embedded paywall and smart wallet.  In 
+**[Javascript Library]({{site.baseurl}}/api/js)** The Javascript library provides the function for the embedded paywall and smart wallet.  In 
 addition to these features, it exposes user and resource data, provides extensive customization options, and is used as 
 part of the hybrid protection scheme.
 
@@ -22,6 +22,8 @@ responses of the REST API.
 
 **[Web Hook & Callbacks]({{site.baseurl}}/api/webhooks)** The callback and web hook section explains the various responses that Wallit can 
 send to your server, their format, and what to do with the information.
+
+**[Dynamic Resource Creation]({{site.baseurl}}/api/dynamic-resource-creation)** Dynamic resource creation lets Wallit spider your site to catalog resources for your automatically.
 
 ## What's Next?
 
