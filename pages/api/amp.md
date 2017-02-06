@@ -50,7 +50,6 @@ Here's an example:
 <div amp-access="AccessReason = 'Deny'" amp-access-hide>
 	You do not have access to this content.
 </div>
-
 <div amp-access="NOT (AccessReason = 'Deny')" amp-access-hide>
 	This is protected content.
 </div>
