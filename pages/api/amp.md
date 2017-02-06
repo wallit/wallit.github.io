@@ -14,11 +14,11 @@ Wallit supports the [amp-access](https://www.ampproject.org/docs/reference/compo
 
 ## Implementing amp-access
 
-First, you [create a valid AMP page](https://www.ampproject.org/docs/get_started/create.html).
+Before integrating Wallit, be sure you've followed the basic guidelines for [creating a valid AMP page](https://www.ampproject.org/docs/get_started/create.html).
 
-Next, add a reference to the amp-access extension and, depending on your requirements, the amp-mustache extension.
+### Basic Setup
 
-Next, define the amp-access settings. Use your Access API key in the URLs - the example below has an API key of b865156f-9e0d-48b6-a2a0-097456f689ec. Everything else can be copied verbatim from the example below - AMP will automatically populate the variables like `READER_ID` when it processes the page.
+To use Wallit's paywall, add a reference to the amp-access extension and, depending on your requirements, the amp-mustache extension. Next, define the amp-access settings. Use your Access API key in the URLs - the example below has an API key of `b865156f-9e0d-48b6-a2a0-097456f689ec`. Everything else can be copied verbatim from the example below - AMP will automatically populate the variables like `READER_ID` when it processes the page.
 
 ```html
 <script async custom-element="amp-access" src="https://cdn.ampproject.org/v0/amp-access-0.1.js"></script>
