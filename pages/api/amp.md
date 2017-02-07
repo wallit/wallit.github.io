@@ -82,7 +82,7 @@ If you use metered pricing, you can display information about the user's meter b
 ```html
 <section amp-access="Quota.IsEnabled">
   <template amp-access-template type="amp-mustache">
-	You are reading page {{Quota.HitCount}} out of {{Quota.AllowedHits}}.
+	You are reading page {% raw %}{{Quota.HitCount}}{% endraw %} out of {% raw %}{{Quota.AllowedHits}}{% endraw %}.
   </template>
 </section>
 ```
