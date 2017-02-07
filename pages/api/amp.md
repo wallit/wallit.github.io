@@ -79,6 +79,16 @@ To display a "Log Out" button if the user is authenticated:
 
 If you use metered pricing, you can display information about the user's meter by accessing the `Quota` object. For instance:
 
+{% highlight html%}
+{% raw %}
+<section amp-access="Quota.IsEnabled">
+  <template amp-access-template type="amp-mustache">
+	You are reading page {% raw %}{{Quota.HitCount}}{% endraw %} out of {% raw %}{{Quota.AllowedHits}}{% endraw %}.
+  </template>
+</section>
+{% endraw %}
+{% endhighlight %}
+
 ```html
 <section amp-access="Quota.IsEnabled">
   <template amp-access-template type="amp-mustache">
