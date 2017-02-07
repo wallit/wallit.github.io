@@ -108,10 +108,12 @@ Wallit's dynamic resource creation relies on using a `script` tag to convey deta
 ## Unsupported Wallit Features When Using AMP
 
 Some Wallit features are not compatible with or are ignored on AMP pages:
-<ul class="browser-default">
-  <li>Embedded paywall</li>
-  <li>Embedded wallet</li>
-  <li>Embedded confirmation</li>
-  <li>Ad blocker detection, ad blocker metering, and ad blocker pricing</li>
-</ul>
+
+Embedded paywall
+
+Embedded wallet
+
+Embedded confirmation
+
+Ad blocker detection, ad blocker metering, and ad blocker pricing
 
