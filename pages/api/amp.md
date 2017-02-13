@@ -34,8 +34,8 @@ To use Wallit's paywall, add a reference to the amp-access extension and, depend
 	},
 	"authorizationFallbackResponse": {
 		"error": true,
-		"AccessReason": "Deny",
-		"IsAnonymousUser": true
+		"accessReason": "Deny",
+		"isAnonymousUser": true
 	  }
   }
 </script>
@@ -43,15 +43,15 @@ To use Wallit's paywall, add a reference to the amp-access extension and, depend
 
 ### Defining Protected Content
 
-Use the `amp-access` attribute to control which parts of the page are publicly accessible and which are protected. The main thing to check if the `AccessReason` value. If it's set to `Deny`, the user doesn't have access to the resource.
+Use the `amp-access` attribute to control which parts of the page are publicly accessible and which are protected. The main thing to check if the `accessReason` value. If it's set to `Deny`, the user doesn't have access to the resource.
 
 Here's an example:
 
 ```html
-<div amp-access="AccessReason = 'Deny'" amp-access-hide>
+<div amp-access="accessReason = 'Deny'" amp-access-hide>
 	You do not have access to this content.
 </div>
-<div amp-access="NOT (AccessReason = 'Deny')" amp-access-hide>
+<div amp-access="NOT (accessReason = 'Deny')" amp-access-hide>
 	This is protected content.
 </div>
 ```
@@ -59,7 +59,7 @@ Here's an example:
 To send the user to the paywall, call `tap:amp-access.login-log-in`. To log a user out, call `tap:amp-access.login-log-out`. For instance:
 
 ```html
-<div amp-access="AccessReason = 'Deny'" amp-access-hide>
+<div amp-access="accessReason = 'Deny'" amp-access-hide>
   <p>To read more, you must purchase this page.</p>
   <button on="tap:amp-access.login-log-in">Purchase</button>
 </div>
@@ -68,7 +68,7 @@ To send the user to the paywall, call `tap:amp-access.login-log-in`. To log a us
 To display a "Log Out" button if the user is authenticated:
 
 ```html
-<div amp-access="NOT IsAnonymousUser" amp-access-hide>
+<div amp-access="NOT isAnonymousUser" amp-access-hide>
   <template amp-access-template type="amp-mustache">
 	<button on="tap:amp-access.login-log-out">Log Out</button>
   </template>
@@ -81,9 +81,9 @@ If you use metered pricing, you can display information about the user's meter b
 
 {% highlight html%}
 {% raw %}
-<section amp-access="Quota.IsEnabled">
+<section amp-access="quota">
   <template amp-access-template type="amp-mustache">
-	You are reading page {{Quota.HitCount}} out of {{Quota.AllowedHits}}.
+	You are reading page {{quota.hitCount}} out of {{quota.allowedHits}}.
   </template>
 </section>
 {% endraw %}
