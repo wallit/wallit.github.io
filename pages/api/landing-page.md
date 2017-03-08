@@ -25,6 +25,8 @@ send to your server, their format, and what to do with the information.
 
 **[Dynamic Resource Creation]({{site.baseurl}}/api/dynamic-resource-creation)** Dynamic resource creation lets Wallit spider your site to catalog resources for your automatically.
 
+**[AMP (Accelerated Mobile Pages)]({{site.baseurl}}/api/amp)** AMP lets you design sites that are optimized for a fast mobile experience, and Wallit can easily integrate with an AMP site.
+
 ## What's Next?
 
 If you haven't clicked a link yet, we pity the fool. ![Mr T]({{site.baseurl}}/images/mr-t.png){: .circle .inline-image}  But, might as well start somewhere:
