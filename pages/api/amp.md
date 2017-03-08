@@ -4,8 +4,6 @@ permalink: /api/amp
 layout: api
 ---
 
-_This is a draft of a feature that's not yet publicly available._
-
 # Using AMP (Accelerated Mobile Pages)
 
 The overarching goal of [AMP](https://www.ampproject.org) is to get pages to load faster on mobile devices. Part of the way that's accomplished is by disallowing third-party scripts that might delay rendering. This means that the Wallit JavaScript Library can't be used.
@@ -34,8 +32,8 @@ To use Wallit's paywall, add a reference to the amp-access extension and, depend
 	},
 	"authorizationFallbackResponse": {
 		"error": true,
-		"AccessReason": "Deny",
-		"IsAnonymousUser": true
+		"accessReason": "Deny",
+		"isAnonymousUser": true
 	  }
   }
 </script>
@@ -43,15 +41,15 @@ To use Wallit's paywall, add a reference to the amp-access extension and, depend
 
 ### Defining Protected Content
 
-Use the `amp-access` attribute to control which parts of the page are publicly accessible and which are protected. The main thing to check if the `AccessReason` value. If it's set to `Deny`, the user doesn't have access to the resource.
+Use the `amp-access` attribute to control which parts of the page are publicly accessible and which are protected. The main thing to check if the `accessReason` value. If it's set to `Deny`, the user doesn't have access to the resource.
 
 Here's an example:
 
 ```html
-<div amp-access="AccessReason = 'Deny'" amp-access-hide>
+<div amp-access="accessReason = 'Deny'" amp-access-hide>
 	You do not have access to this content.
 </div>
-<div amp-access="NOT (AccessReason = 'Deny')" amp-access-hide>
+<div amp-access="NOT (accessReason = 'Deny')" amp-access-hide>
 	This is protected content.
 </div>
 ```
@@ -59,7 +57,7 @@ Here's an example:
 To send the user to the paywall, call `tap:amp-access.login-log-in`. To log a user out, call `tap:amp-access.login-log-out`. For instance:
 
 ```html
-<div amp-access="AccessReason = 'Deny'" amp-access-hide>
+<div amp-access="accessReason = 'Deny'" amp-access-hide>
   <p>To read more, you must purchase this page.</p>
   <button on="tap:amp-access.login-log-in">Purchase</button>
 </div>
@@ -68,7 +66,7 @@ To send the user to the paywall, call `tap:amp-access.login-log-in`. To log a us
 To display a "Log Out" button if the user is authenticated:
 
 ```html
-<div amp-access="NOT IsAnonymousUser" amp-access-hide>
+<div amp-access="NOT isAnonymousUser" amp-access-hide>
   <template amp-access-template type="amp-mustache">
 	<button on="tap:amp-access.login-log-out">Log Out</button>
   </template>
@@ -81,9 +79,9 @@ If you use metered pricing, you can display information about the user's meter b
 
 {% highlight html%}
 {% raw %}
-<section amp-access="Quota.IsEnabled">
+<section amp-access="quota">
   <template amp-access-template type="amp-mustache">
-	You are reading page {{Quota.HitCount}} out of {{Quota.AllowedHits}}.
+	You are reading page {{quota.hitCount}} out of {{quota.allowedHits}}.
   </template>
 </section>
 {% endraw %}
@@ -93,7 +91,7 @@ If you use metered pricing, you can display information about the user's meter b
 
 Wallit's access control mechanisms assume every resource has an API key and a resource/external key associated with it. This combination of keys uniquely identifies a resource, which allows Wallit to determine access rights.
 
-With AMP, there's no way to specify an external key from the client-side (as there is with Wallit's JavaScript Library). Instead, Wallit uses the canonical URL of the document as an identifier, looking for an existing resource with that same URL. If there is more than one resource defined with that URL, Wallit will pick one to use. Note that the canonical URL must exactly match the URL stored for a resource.
+With AMP, there's no way to specify an external key from the client-side (as there is with Wallit's JavaScript Library). Instead, Wallit uses the canonical URL of the document (which an AMP document is required to have) as an identifier, looking for an existing resource with that same URL. If there is more than one resource defined with that URL, Wallit will pick the oldest resource. Note that the canonical URL must exactly match the URL stored for a resource -- so both should be absolute URLs.
 
 Wallit's dynamic resource creation relies on using a `script` tag to convey detailed metadata, which isn't allowed on AMP pages. When dynamic resource creation occurs for an AMP page, the canonical page will be spidered, if provided. This means that additional metadata can be provided on the canonical page. It also means that the canonical page and the AMP page will be treated as a single resource.
 

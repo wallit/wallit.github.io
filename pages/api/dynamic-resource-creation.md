@@ -11,7 +11,10 @@ layout: api
 
 When enabled, dynamic resource creation will occur automatically using just the basic information available from the page. It can be customized by embedding XML meta data in the resource. Dynamic resource creation only occurs the first time an access attempt is made against a resource.
 
-If a different canonical URL is specified on a page (using the `<link rel="canonical" href="foo.htm">`), only the canonical page will be spidered.
+If a different canonical URL is specified on a page (using the `<link rel="canonical" href="foo.htm">`), only the canonical page will be spidered. There are several recommendations for canonical URLs to get the best Wallit experience:
+* Identify a canonical URL on every page to avoid duplicate resources from being created for the same URL.
+* The canonical URL not include any URL parameters or query string.
+* The canonical URL should contain an absolute URL. Relative URLs are permitted, just discouraged.
 
 Dynamic resource creation is only ever run once for a given resource. Once the resource has been created at Wallit, it's not run again -- so changing the XML metadata, for instance, will not update the Wallit resource.
 
