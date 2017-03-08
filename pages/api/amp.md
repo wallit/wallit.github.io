@@ -4,8 +4,6 @@ permalink: /api/amp
 layout: api
 ---
 
-_This is a draft of a feature that's not yet publicly available._
-
 # Using AMP (Accelerated Mobile Pages)
 
 The overarching goal of [AMP](https://www.ampproject.org) is to get pages to load faster on mobile devices. Part of the way that's accomplished is by disallowing third-party scripts that might delay rendering. This means that the Wallit JavaScript Library can't be used.
